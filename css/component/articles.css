@@ -13,7 +13,8 @@
   padding: 0;
   /* padding-top: 13%; /1* show some of image properly, and still create space when no img *1/ */
   /* padding-top: 0.4rem; /1* as long as some padding here adding margin to h2 does what we want *1/ */
-  padding-top: 1.0px; /* q whether to go for almost nothing? */
+  /* padding-top: 1.0px; /1* q whether to go for almost nothing? *1/ */
+  padding-top: 0.0px; /* q whether to go for almost nothing? */
   /* margin-top: 1rem; */
   /* margin: 0 0 0 1rem; /1* hmm maybe interesting *1/ */
   /* margin: 0 1rem 0 0rem; /1* hmm maybe interesting *1/ */

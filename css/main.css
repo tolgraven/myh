@@ -28,7 +28,8 @@
   --side-max-fraction: 0.70;
   --side-max-pixels:   500px;
 
-  --header-height:     4rem; /* the slim header when not open */
+  --header-height:     4.2rem; /* the slim header when not open */
+  /* --header-height:     3.6rem; /1* the slim header when not open *1/ */
   --logo-top-height:   5rem; /* this ok - height of pre-header logo */
   --article-img-above-margin: 6rem;
 
@@ -657,7 +658,7 @@ section ul {
 section > h1, section > h2 {
   text-align: center;
   padding:  var(--space) var(--pad-section-inner);
-  padding: 1.2rem 1.2rem 1.2rem 5rem;
+  padding: 1.2rem 1.2rem 1.2rem 6rem;
   width: 100%;
   /* z-index: -1; */
   z-index: 12;
