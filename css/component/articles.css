@@ -26,8 +26,8 @@
 
   border-bottom: 2px solid;
   border-top: 2px solid;
-  box-shadow: -4px -2px 6px 3px var(--box-faint-color),
-            inset -2px -1px 10px 5px var(--box-faint-color);
+  box-shadow: -2px -2px 6px 3px var(--box-faint-color),
+            inset -2px -1px 8px 4px var(--box-faint-color);
   /* box-shadow: inset -0px 2px 7px 2px var(--box-faint-color); */
 }
 
@@ -91,7 +91,7 @@
         var(--lum-light-3), 0.8) 120%);
   padding: 1.0rem 1.0rem 3.0rem;
   border-left: 0.4rem solid;
-  box-shadow: -2px 0px 7px 2px var(--box-faint-color);
+  box-shadow: -2px 0px 6px 2px var(--box-faint-color);
   /* try like "off" the left border... exentuate (sp??? lol) it sticking out */
   flex: 1 2 auto;
   /* break-after: always; */
@@ -131,7 +131,7 @@
   background: var(--heading-on-img-bg);
   border-top: 1px solid var(--box-regular-color);
   /* box-shadow: inset -2px -2px 4px 1px var(--box-faint-color); */
-  box-shadow:  -2px -2px 7px 3px var(--box-faint-color);
+  box-shadow:  -2px -2px 6px 3px var(--box-faint-color);
 }
 
 .publications > ul > li > h2 {

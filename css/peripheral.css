@@ -3,19 +3,6 @@
  *
  */
 
- /* body class, for persistent footer. sticky isnt even correct nomenclature why am i propagating it ugh */
-.sticky-footer-container { /* not sensible/needed for a one-page static as wont have that little content but otherwise v handy i guess? */
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-}
-.sticky-footer-container::after { /* TODO: understand exactly why this works, for the footer */
-  content: '\00a0'; /* &nbsp; */
-  display: block;
-  margin-top: var(--space);
-  /* height: 0px; */
-  /* visibility: hidden; */
-}
 
 @supports(scroll-margin-top: 0px) { /* compensate for our sticky header. */
   .link-anchor { scroll-margin-top: var(--link-offset); } }

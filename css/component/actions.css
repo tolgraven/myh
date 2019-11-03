@@ -120,7 +120,7 @@
 
 .applying, .existing {
   display: inline;
-  position: relative; /* needed for ::after trickery */
+  /* position: relative; /1* kills my arrows tho needed for ::after trickery *1/ */
 }
 .applying {
   left: 0; top: 0;
@@ -308,7 +308,8 @@
   display: flex;
   margin: auto;
   margin-top: 1.5rem;
-  background: hsl(var(--hue-2), 30%, 80%, 0.5);
+  margin-bottom: 0.8rem;
+  background: hsl(var(--hue-2), 30%, 90%, 0.3);
 }
 .wrap-actions > h2 {
   background: var(--myh-yellow);
