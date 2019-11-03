@@ -1,0 +1,205 @@
+
+/* .articles { */
+/*   /1* the section. hopefully doesnt need any extra custom? *1/ */
+/* } */
+.article-flow {
+  padding: 0;
+  margin: 0;
+  /* box-shadow: inset -2px 0px 12px 7px var(--box-faint-color); */
+}
+.article-item {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  /* padding-top: 13%; /1* show some of image properly, and still create space when no img *1/ */
+  /* padding-top: 0.4rem; /1* as long as some padding here adding margin to h2 does what we want *1/ */
+  padding-top: 1.0px; /* q whether to go for almost nothing? */
+  /* margin-top: 1rem; */
+  /* margin: 0 0 0 1rem; /1* hmm maybe interesting *1/ */
+  /* margin: 0 1rem 0 0rem; /1* hmm maybe interesting *1/ */
+  /* margin-bottom: 0.4rem; */
+
+  top: 0; left: 0;
+  overflow: hidden;
+  /* background: var(--section-bg); */
+  background: var(--bg-2);
+
+  border-bottom: 2px solid;
+  border-top: 2px solid;
+  box-shadow: -4px -2px 6px 3px var(--box-faint-color),
+            inset -2px -1px 10px 5px var(--box-faint-color);
+  /* box-shadow: inset -0px 2px 7px 2px var(--box-faint-color); */
+}
+
+.article-item > img { /* article image - put as bg for header */
+  --offset: 4rem;
+  height: calc(100% + 2.00 * var(--offset));
+  width:  calc(100% + 2.00 * var(--offset)); /* yes this is correct way */
+  top:  calc(-1 * var(--offset));
+  left: calc(-1 * var(--offset));
+  /* whoops actually _need_ these no with para... */
+
+  /* height: 100%; */
+  /* width: 100%; */
+  /* top: 0rem; left: 0; */
+  padding: 0;
+  position: absolute;
+  object-fit: cover;
+  overflow: hidden;
+  /* z-index: -1; /1* whites out*1/ */
+  transition: transform 4.5s;
+}
+
+.article-item > img ~ h2 { /* if find img, let it extend properly above header */
+  margin-top: var(--article-img-above-margin);
+}
+#nyheter-flik > ul > .article-item:hover img { /* article image - put as bg for header */
+  /* transform: scale(2.02) translateZ(9px); */
+  transform: translateZ(0px);
+  transition: transform 3.3s;
+}
+.article-item > .fallback-bg {
+  background: var(--heading-no-img-bg);
+}
+
+.article-text > img { /* image in article text - byline-ish */
+  float: left;
+}
+
+.article-text {
+  display: flex;
+  position: relative;
+  /* position: sticky; */
+  /* bottom: 4rem; */
+}
+.article-text > p {
+  margin: 0;
+}
+.article-text .article-date {
+  text-align: right;
+  padding: 1.0rem 1rem 1rem 2rem;
+  background: var(--heading-on-img-bg);
+  color: var(--bg-1);
+  font-size: 1.1em;
+  flex: 1 2 auto;
+}
+.article-text p:last-of-type { /* actual text */
+  background: linear-gradient(to top,
+        var(--bg-2) -5%,
+        hsl(var(--hue-2),
+        var(--sat-low-1),
+        var(--lum-light-3), 0.8) 120%);
+  padding: 1.0rem 1.0rem 3.0rem;
+  border-left: 0.4rem solid;
+  box-shadow: -2px 0px 7px 2px var(--box-faint-color);
+  /* try like "off" the left border... exentuate (sp??? lol) it sticking out */
+  flex: 1 2 auto;
+  /* break-after: always; */
+}
+/* .article-text { /1* actual text *1/ */
+.article-text .attachments {
+  /* width: 100%; */
+  font-size: 0.8em;
+  flex: 0 8 auto;
+
+  /* display: inline; */
+  position: absolute;
+  right: 0; bottom: 0;
+  float: bottom;
+}
+.article-item > h2 a {
+  color: var(--bg-1);
+  text-decoration: none;
+}
+.article-item > h2,
+.article-item > h2 a {
+
+  color: var(--bg-1);
+  z-index: 10;
+  text-align: left;
+  font-size: 1.2rem;
+  /* border-right: 0.4rem solid var(--fg-1); */
+}
+.article-item > h2 {
+  position: sticky;
+  bottom: -6rem;
+  /* text-align: right; */
+  margin-top: 0;
+  margin-bottom: 0;
+  /* padding-left: 1rem; */
+  padding: 1rem 2rem;
+  background: var(--heading-on-img-bg);
+  border-top: 1px solid var(--box-regular-color);
+  /* box-shadow: inset -2px -2px 4px 1px var(--box-faint-color); */
+  box-shadow:  -2px -2px 7px 3px var(--box-faint-color);
+}
+
+.publications > ul > li > h2 {
+}
+/* .publications   ul   li   h2 { */
+.publications > ul > li > h2 a {
+  font-size: 0.9em;
+  /* ok selector is reaching is just font-size not changing size of the font lol */
+}
+
+
+
+.press-releases > ul > li.article-item > img {
+  left: 0;
+  width: unset;
+  width: 25%; /* these are tiny - dont stretch... */
+  z-index: 2;
+}
+.press-releases > ul > li > h2 {
+  margin-left: calc(25%);
+  padding-right: calc(25% + 1rem);
+  /* padding-top: 4rem; */
+}
+.press-releases > ul > li > .article-text > p:last-of-type {
+  position: relative;
+  left: 0%;
+  width: 75%;
+  padding-bottom: 3rem;
+  border: 0;
+}
+.press-releases > ul > li > .article-text > .article-date {
+  position: relative;
+  width: 25%;
+  top: -2.0rem;
+  height: 2.0rem;
+  z-index: 3;
+  /* top: -6.3rem; */
+  /* background: linear-gradient(to bottom, var(--heading-on-img-bg), transparent 100%); */
+  /* height: 2.8rem; */
+  font-weight: 600;
+  /* border-bottom: 2px solid var(--fg-1); */
+  /* border-top: 4px solid var(--fg-1); */
+}
+.press-releases > ul > li.article-item > img ~ h2 {
+  /* margin-top: 2rem; */
+  margin-top: 0rem;
+}
+.press-releases > ul > li.article-item > img {
+  /* margin-top: 2rem; */
+  margin-top: 0rem;
+}
+
+
+/* .article-item > img ~ h2 { /1* if find img, let it extend properly above header *1/ */
+/* } */
+#nyheter-flik > ul .article-item > img ~ h2 {  /* means we're on main/proper news page... */
+  --article-img-above-margin: 10rem;
+}
+#nyheter-flik > ul .article-item {  /* means we're on main/proper news page... */
+  position: sticky;
+  /* top: calc(-1.5 * var(--header-height)); */
+  top: calc(1.0 * var(--header-height));
+}
+#nyheter-flik > ul .article-item > img {  /* means we're on main/proper news page... */
+  transform-origin: top;
+
+  --para-px: calc(-1px * var(--para));
+  transform: translateZ(var(--para-px))
+             translateY(calc(-1.00 * var(--para) * var(--para-px)))
+             scale(var(--para-scale));
+}

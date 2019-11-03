@@ -1,0 +1,267 @@
+
+
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  /* background: var(--bg-2); */
+  z-index: 19;
+  padding: 0; /* for nice connect to sides yo */
+  /* padding: 0 0.8rem; */
+  /* height: 0.4rem; */
+  height: 4rem;
+  transition: max-height 0.2s ease 0.10s;
+              /* background 0.0s ease 0.0s; */
+              /* display 0.0s linear 0.0s; */
+  /* box-shadow: 2px 1px 9px 5px var(--box-faint-color); */
+  /* border-bottom: 0.4rem solid black; */
+  max-height: 6rem;
+  overflow-y: hidden;
+}
+
+
+.myh-logo-text {
+  background: var(--bg-2);
+  padding: 0 0.4rem;
+  margin: 0 0.4rem;
+  align-self: baseline;
+  vertical-align: middle;
+  align-items: center;
+
+  display: flex; /* always show even if rest hidden */
+}
+.myh-logo-text span {
+  vertical-align: middle;
+  font-weight: 600;
+}
+.myh-logo-text span:first-of-type { /* M */
+  padding-right: 0.05rem;
+  font-size: 3.6em;
+  line-height: 1.2em;
+  background: var(--bg-2);
+}
+.myh-logo-text span:nth-of-type(2) { /* Yh */
+  font-size: 1.80em;
+  padding: 0.25em 0.20rem;
+  background-color: var(--myh-yellow);
+  color: var(--fg-1);
+}
+.myh-logo-text > a > div {
+/* .myh-logo-text > .tagline { /1* Yh *1/ */
+/* .myh-logo-text > .tagline { /1* Yh *1/ */
+  /* display: inline-flex; */
+  display: var(--display-tagline);
+  font-size: 0.90em;
+  font-weight: 600;
+  color: var(--fg-1);
+  flex-flow: column;
+  align-items: center;
+  vertical-align: middle;
+}
+/* .myh-logo-text:hover, .myh-burger:hover { */
+/* .myh-burger:hover { */
+.myh-logo-text:hover {
+  /* filter/transforms gets bg disappearing? weird */
+  /* filter: brightness(110%); */
+  transform: scale(1.05);
+  transition: transform 0.5s;
+}
+
+
+.myh-burger {
+  padding: 0 0.4rem;
+  margin: 0 0.4rem;
+  align-self: baseline;
+  vertical-align: middle;
+  align-items: center;
+
+  /* want same allover margins as logo on left - so black around */
+  position: absolute;
+  /* right: 0; top: 0.8em; */
+  /* right: 0; top: 0em; */
+  right: 0.2rem; top: 0.2rem;
+  background-color: var(--myh-yellow);
+  padding: 0.8rem;
+  padding-top: 1.2rem;
+  /* padding-bottom: 0.8rem; */
+  /* padding-bottom: 2.0rem; */
+  padding-bottom: 1.2rem;
+  /* margin: 0.2rem 0 0.2rem 0; */
+  border-right: 0.4rem solid;
+  /* z-index: 20; */
+}
+.myh-burger::after {  /* noneed yellow bg is enough? */
+  content: "";
+  position: absolute;
+  /* padding: 2rem; */
+  background: var(--fg-2);
+  width: 3.2rem;
+  height: 100%;
+  right: 0; top: 0;
+  z-index: -1;
+}
+
+/* background for sticky header until get page sticky headings */
+main::before {
+  content: "";
+  position: sticky;
+  top: 0; left: 0;
+  padding-top: -4rem;
+  margin-top: -4rem;
+  background: var(--fg-2);
+  width: 100vw;
+  height: 4rem;
+  opacity: 0.85;
+  z-index: 10;
+}
+
+
+.myh-burger > .burger {
+  padding: 0.2rem 0.8rem;
+}
+.burger-check:checked ~ header .myh-burger {
+  padding: 0;
+}
+
+
+#areas-link:hover {
+  /* width: 100%; */
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+#areas-link {
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+}
+#areas {
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+}
+#areas > ul > li { /* submenu */
+  width: 0%;
+  transition: width 0.5s ease 0.0s, opacity 0.5s ease 0.1s;
+  display: none;
+  opacity: 0.0;
+  margin: 0;
+  /* padding: 0; */
+  /* font-size: 0.9em; */
+  white-space: pre;
+
+  background: var(--bg-1);
+  color: var(--fg-1);
+}
+
+#areas a { color: var(--fg-1); }
+
+
+
+.nav-main {
+  /* position: absolute; */
+  min-width: 70%;
+  max-width: 100%;
+  align-items: center;
+  overflow-x: scroll;
+  /* overflow-y: hidden; */
+  overflow-y: visible;
+  /* z-index: 30; */
+}
+.nav-links {
+  flex: 1 3 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap; /* on all the time and work widths rather? for anim */
+}
+.nav-links > li {
+  font-size: 0.9em;
+  min-width: 0%;
+  height: 100%;
+  /* white-space: nowrap; */
+  /* padding: 0.2rem 0; */
+  padding: 0.8rem 0.4rem;
+  display: var(--nav-visible);
+  /* visibility: var(--nav-visible); */
+  transition: min-width 0.2s ease 0.0s;
+}
+/* .nav-links > li:first-of-type, .nav-links > li:nth-of-type(2) { */
+.nav-links > li:first-of-type{
+  display: block; /* always show logo */
+  padding: 0;
+}
+.nav-links > li > a {
+  color: var(--bg-1);
+}
+.nav-tools {
+  display: flex;
+  font-size: 0.8em;
+}
+
+.search {
+  display: var(--search-visible);
+  min-width: 55%;
+  /* visibility: var(--search-visible); */
+}
+#header_global_search { /* XXX broken jumpy, figure out. */
+  font-size: 1.1em;
+  /* height: 1.2rem; */
+}
+
+
+/*
+ * Only intended to actually be shown when not enough space in header - but it's so pretty and will soon have some more menu stuff (theme toggle...) so keep "universal" for now. DOES need refactoring for sure
+ */
+  #show-menu { display: none; }
+  .show-in-menu { display: none; }
+  #expand:checked ~ * menu .show-in-menu { display: block; }
+
+  #expand:checked ~ * .nav-main {
+    font-size: 1.1em;
+    background: transparent;
+    /* max-height: 30rem; */
+    /* transition: max-height 0.5s ease 0.2s; */
+  }
+  #expand:checked ~ * .nav-links {
+    position: relative;
+    flex-wrap: wrap;
+    /* background: var(--fg-2); */
+    background: linear-gradient(170deg, var(--fg-2), var(--box-regular-color) 300%);
+  }
+  #expand:checked ~ * .nav-links > li {
+    display: block;
+    /* display: flex; */
+    min-width: 50%;
+    flex: 1 1 auto;
+    /* transition: transform 0.3s; */
+    line-height: 1.7em;
+  }
+  #expand:checked ~ * #areas > ul > li {
+    width: 100%;
+    opacity: 1.0;
+    display: inline-flex;
+    /* flex-wrap: no-wrap; */
+    /* display: inline; */
+    flex: 1 1 auto;
+    transition: width 0.3s ease 0.0s, opacity 0.9s ease 0.0s;
+  }
+
+  #expand:checked ~ header {
+    max-height: 30rem;
+    height: auto; /* why no longer auto auto? */
+    transition: max-height 0.20s ease 0.10s;
+    /* transition: all 0.2s ease; */
+    --search-visible: block;
+    --nav-visible: block;
+    /* background: var(--bg-2); */
+    background: hsl(var(--hue-2), var(--sat-mid-1), var(--lum-light-2), 0.90);
+    /* --search-visible: visible; */
+    /* --nav-visible: visible; */
+    overflow: visible;
+  }
+
+  /* @keyframes header-logo-anim     { 25%, 75% { transform: scaleY(0.0); } } */
+  /* @keyframes menu-anim     { 25%, 75% { opacity: 0.0; transform: scaleX(0.0) scaleY(0.50); } } */
+

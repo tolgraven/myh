@@ -1,0 +1,159 @@
+/*
+ * input.css - buttons, burger menu, forms
+ *
+ */
+
+input.burger-check { display: none; }
+
+label.burger {
+  position: relative;
+  cursor: pointer;
+  --height: 1.60rem;
+  --bun-width: 0.25rem;
+  /* color: var(--bg-1); */
+  border-bottom: var(--bun-width) solid; /* LOWER BUN */
+  height: var(--height);
+  width: var(--height);
+  transition: border-bottom 1s ease-in-out;
+}
+.burger::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+.burger:before, .burger:after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+.burger:before { /* UPPER BUN */
+  border-bottom: var(--bun-width) solid;
+}
+.burger:after {  /* MIDDLE */
+  border-top: var(--bun-width) solid;
+  margin-top: calc(0.5 * var(--height) - 0.75 * var(--bun-width));
+}
+
+
+.burger-check:checked ~ * .burger:before,
+.burger-check:checked ~ * .burger:after {
+  position: absolute;
+  width: var(--height);
+  --translate: -0.5rem;
+  margin: 0;
+  border-radius: 1px;
+  transition: transform 0.3s ease-out;
+}
+/* turn top and middle bun into a cross */
+.burger-check:checked ~ * .burger:before {
+  /* transform: rotate(225deg) translateY(var(--translate)) translateX(var(--translate)); */
+  transform: rotate(225deg) translateY(var(--translate)) translateX(var(--translate));
+}
+.burger-check:checked ~ * .burger:after {
+  /* transform: rotate(315deg) translateY(calc(-1 * var(--translate))) translateX(var(--translate)); */
+  transform: rotate(315deg) translateY(calc(-1 * var(--translate))) translateX(var(--translate));
+}
+
+/* only bit that isnt p much generic... so try sep more better later maybe */
+/* .burger-check:checked ~ * .burger { /1* turns into a line from right side to middle *1/ */
+.burger-check:checked ~ * .myh-burger .burger { /* turns into a line from right side to middle */
+  position: absolute;
+  top: 0.5rem; /* needs to be a static amount or lines break... */
+  right: 1.5rem;
+  border-bottom: 0; /* remove lower bun */
+  /* transition: border 0.5s ease-in-out; */
+  color: var(--myh-yellow);
+}
+
+
+
+div.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+button {
+  /* padding: calc(0.3 * var(--space)) calc(0.3 * var(--space-lg)); */
+  /* background: hsl(var(--hue-1), 7%, var(--lum-bg-2), 0.35); */
+  color: var(--fg-2);
+  /* border: var(--line-width) solid; */
+  border-radius: 0.15rem;
+  position: relative;
+  backdrop-filter: blur(2rem) brightness(80%);
+  -webkit-backdrop-filter: blur(2rem) brightness(80%);
+}
+button label {
+  position: relative;
+  font-size: 1.2rem;
+  z-index: 2;
+}
+div.blur-bg { /* backdrop-filter is finicky with transitions, so... */
+  position: absolute;
+  top: 0; left: 0;
+  /* pointer-events: none; */
+  width: 100%;
+  z-index: 0;
+  height: 100%;
+  opacity: 0.4;
+  backdrop-filter: blur(2rem) brightness(130%);
+  -webkit-backdrop-filter: blur(2rem) brightness(130%);
+  transition: opacity 0.5s;
+}
+button:hover .blur-bg, .blur-bg:hover {
+  opacity: 1.0;
+}
+
+
+form.contact-form {
+  padding: 1.2rem;
+  /* flex: 1 2 100px; */
+  /* background: var(--fg-1); */
+}
+form.contact-form > input, form.contact-form > textarea {
+  /* margin: 1.2rem; */
+  display: block;
+  width: 50%;
+  margin-bottom: 0.8rem;
+}
+form.contact-form > label {
+  margin-top: 0.8rem;
+  /* display: inline; */
+}
+.submit-button {
+  padding: 0.4rem 0.8rem;
+  font-size: 1.0em;
+}
+
+
+input[type="search"] {
+  /* background: var(--fg-1); */
+  color: var(--bg-1);
+  /* background: va */
+}
+input[type="search"] + button {
+  margin-left: 0;
+}
+
+/* #theme-toggle:checked ~ .themable { */
+/* #theme-toggle:checked ~ body { */
+/* #theme-toggle:checked ~ main { */
+/*   /1* ok so can select main but not body OUCH. *1/ */
+/* /1* .themable { *1/ */
+/*     --bg-1:     var(--dark-1); */
+/*     --bg-2:   var(--dark-2); */
+/*     --fg-1:     var(--light-1); */
+/*     --fg-2:   var(--light-text); */
+/*     --box-regular-color-flip: hsla(0, 0%, var(--lum-light-1), var(--opacity-regular)); */
+/*     --box-faint-color-flip:   hsla(0, 0%, var(--lum-light-1), var(--opacity-faint)); */
+/*     color: red; */
+/* } */
+/* #theme-toggle:not(:checked) ~ main { */
+/*   --bg-1:      var(--light-1); */
+/*   --bg-2:    var(--light-text); */
+/*   --fg-1:      var(--dark-1); */
+/*   --fg-2:    var(--dark-2); */
+/*   --box-regular-color-flip: var(--box-regular-color); /1* light mode always dark shadows *1/ */
+/*   --box-faint-color-flip:   var(--box-faint-color); */
+/*     color: blue; */
+/* } */
+

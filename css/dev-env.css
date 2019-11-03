@@ -1,0 +1,17 @@
+
+.intro,
+ .article-flow, .article-item,
+ .cal-item,
+.action-twin,
+footer, .footer-content, .footer-column {
+  background: var(--section-bg);
+}
+.intro, .article-flow, .article-item,
+ .cal-list,  .action-twin,
+.footer-column {
+   box-shadow: 0px 1px 5px 1px var(--box-faint-color);
+}
+
+.content > * { /* primary, sidebar... */
+  box-shadow: 1px 1px 6px 2px var(--box-faint-color);
+}

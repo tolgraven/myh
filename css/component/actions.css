@@ -1,0 +1,384 @@
+
+
+.actions {
+  padding: 1rem;
+  background: hsl(var(--hue-2), 30%, 80%, 0.6);
+  /* max-width: 700px; */
+  /* max-width: 90%; */
+  display: flex;
+  margin: 0.8rem auto 0;
+  flex-flow: row wrap;
+}
+.info-box {
+  padding: 0 1rem;
+  margin: 0.4rem 1.0rem;
+  /* flex: 0.5 3 200px; */
+  flex: 1 1 auto;
+  max-width: 250px;
+  /* z-index: -1; /1* wanted to float past above header hehe oh well no go *1/ */
+  position: absolute;
+  /* position: relative; */
+  /* top: -80%; */
+  bottom: 90%;
+  right: 0%;
+  padding: var(--space);
+}
+.actions .info-box > div {
+  display: flex;
+  align-items: space-between;
+  flex-flow: column wrap;
+}
+.action-tagline {
+  font-size: 2rem;
+  display: flex;
+  width: 100%;
+  align-items: space-between;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.action-tagline > h2 {
+  margin: 0 1rem;
+}
+
+.action li {
+  white-space: nowrap; /* ensures minimum width is never exceeded */
+  display: flex;
+  justify-content: space-between; /* ensures stretched to edges */
+  position: relative;
+  padding: 0;
+}
+.action li span { /* middle text */
+  /* color: var(--myh-yellow); */
+  font-weight: 900;
+  z-index: 10;
+  pointer-events: none;
+  padding-top: 0.4em;
+  mix-blend-mode: difference;
+}
+/* .action li span::before { /1* middle text *1/ */
+/*   content: " "; */
+/*   position: absolute; */
+/*   background: white; */
+/*   width: 60%; */
+/*   height: 100%; */
+/*   z-index: -1; */
+/*   /1* right: 0; top: 0; *1/ */
+/*   clip-path: polygon(0 50%, 10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%); */
+/* } */
+
+.action { /* whole box */
+  /* background: linear-gradient(145deg, var(--applying-color) 40%, var(--existing-color) 60%); */
+  padding-inline-start: 0;
+  overflow: hidden;
+}
+
+.action-twin {
+  /* transform: skew(-2deg); */
+  transform: skew(-0deg);
+  flex: 2 0.2 60%;
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: space-between;
+  flex-flow: column wrap;  /* cant have if want to also get side by side lol */
+  /* background: var(--fg-2); */
+  /* background: var(--box-faint-color); */
+  /* background: linear-gradient(125deg, var(--applying-color) 49.9%, var(--existing-color) 50.1%); */
+}
+.action-twin ul li a {
+  font-size: 1.8em;
+  text-decoration: none;
+}
+/* .action-twin ul li a:first-of-type { */
+/*   background: hsl(var(--hue-1), var(--sat-mid-2), 50%, 0.7); */
+/* } */
+/* .action-twin ul li a:last-of-type { */
+/*   background: hsl(var(--hue-2), var(--sat-mid-2), 50%, 0.7); */
+/* } */
+/* .action-twin ul li div span { */
+/*    margin: 0 1rem; */
+/*    pointer-events: none; */
+/*    z-index: -1; */
+/* } */
+/* .action-twin ul li > div { */
+/*    left: 0; */
+/*    width: 50%; */
+/* } */
+.action-twin > div:first-of-type { justify-content: flex-start; }
+.action-twin > div:last-of-type  { justify-content: flex-end; }
+
+.action-header {
+  display: flex;
+  justify-content: space-evenly;
+  background: var(--bg-2);
+}
+.action-header h2 {
+  margin: 0;
+}
+
+.applying, .existing {
+  display: inline;
+  position: relative; /* needed for ::after trickery */
+}
+.applying {
+  left: 0; top: 0;
+  background: var(--applying-color);
+}
+.existing {
+  right: 0; bottom: 0;
+  background: var(--existing-color);
+}
+
+.applying::after, .existing::before {
+  /* content: ""; */ /* stop for now */
+  position: absolute;
+  height: 0.2em;
+  width: 200%;
+  /* transform: skew(-25deg); */
+  /* z-index: -1; */
+  /* transition: width 0.3s, height 0.3s; */
+  transition: all 0.5s;
+}
+.applying::after {
+  left: 0px;
+  top: -0%;
+  background: linear-gradient(to right, var(--applying-color) 60%, transparent 100%);
+  /* border-top: 1px solid var(--applying-color); */
+}
+.existing::before {
+  right: 0px;
+  bottom: 0%;
+  background: linear-gradient(to left, var(--existing-color) 60%, transparent 100%);
+  /* border-bottom: 1px solid var(--existing-color); */
+}
+.applying::after:hover, .existing::before:hover,
+.applying:hover::after, .existing:hover {
+  /* box-shadow: 2px 2px 3px 5px var(--fg-2); */
+  /* z-index: 200; */
+  /* width: 30%; */
+  width: 830%;
+  transition: all 0.5s;
+  transform: scaleY(1.1);
+}
+
+
+/* .call-to-action.applying::after, */
+/* .call-to-action.existing::before { */
+/*   width: 0; */
+/* } */
+/* .call-to-action.existing::after, */
+/* .call-to-action.applying::before { */
+/*   content: ""; */
+/*   position: absolute; */
+/*   z-index: -1; */
+/*   height: 1.0em; */
+/*   /1* width: 100%; *1/ */
+/*   width: 1000%; */
+/*   height: 750%; */
+/*   transition: all 0.5s; */
+/* } */
+
+/* .call-to-action.applying:hover::before { */
+/*   /1* right: 0px; *1/ */
+/*   top: 10%; */
+/*   width: 1000%; */
+/*   background: linear-gradient(to right, var(--applying-color) 60%, transparent 100%); */
+/* } */
+/* .call-to-action.existing:hover::after { */
+/*   /1* left: -0px; *1/ */
+/*   bottom: -10%; */
+/*   width: 1000%; */
+/*   right: 0; */
+/*    background: linear-gradient(to left, var(--existing-color) 60%, transparent 100%); */
+/* } */
+
+
+.nav-box {
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 2px 1px 9px 6px var(--box-regular-color);
+  /* background: var(--bg-2); */
+  background: hsla(0, 10%, 80%, 0.7);
+  /* no blur on moz so... */
+}
+.nav-box > li {
+  display: flex;
+  /* margin: 0 1rem; */
+}
+.nav-box > li > a {
+  display: flex;
+}
+.nav-box > li > .applying > button {
+  margin-left: 0.8rem;
+  background: var(--applying-color);
+  cursor: crosshair;
+}
+.nav-box > li > .existing > button {
+  margin-right: 0.8rem;
+  background: var(--existing-color);
+  cursor: zoom-in;
+}
+ .applying  {
+  background: var(--applying-color);
+}
+ .existing  {
+  background: var(--existing-color);
+  order: 3; /* restore order */
+}
+
+.nav-box > li > span {
+  /* min-width: 20rem; */
+  min-width: 67%;
+  display: block;
+  margin: auto;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-weight: 500;
+  background: var(--bg-2);
+  font-size: 1.2em;
+  --near: calc(0%  + 0.2 * var(--arrow-front));
+  --tip: calc(2%  + 0.3 * var(--arrow-front));
+  clip-path: polygon(0 0,
+     calc(100% - var(--near)) 0,
+     calc(100% - var(--tip)) 50%,
+     calc(100% - var(--near)) 100%,
+     var(--near) 100%,
+     var(--tip)   50%,
+     var(--near)   0,
+     0 0);
+  transition: clip-path 0.6s, background 0.4s;
+  /* z-index: -1; */
+}
+.nav-box > li > a > button:hover {
+  /* filter: brightness(110%); */
+  /* padding: 1rem 4rem; */
+}
+.nav-box > li > .applying:hover {
+  /* filter: brightness(130%); */
+}
+.nav-box > li > .applying:hover ~ span {
+  /* background: var(--applying-color); */
+  background: linear-gradient(to left, var(--bg-2), var(--applying-color));
+}
+.nav-box > li > .existing:hover ~ span {
+  /* transition:  background 1.4s; */
+  background: linear-gradient(to right, var(--bg-2), var(--existing-color));
+  /* background: var(--existing-color); */
+}
+
+.nav-box > li > a > button {
+  padding: 0.4rem 2.5rem;
+  margin: 0;
+  cursor: crosshair;
+  /* overflow: visible; */
+  /* z-index: 20; */
+}
+
+.apply-header {
+  color: var(--bg-2);
+  max-width: 50%;
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  /* display: inline; */
+  /* display: flex; */
+  pointer-events: none; /* just kill hover from box-banner */
+  padding: 0.8rem 1.6rem 0 1.6rem !important;
+  /* padding-right: 0.2rem !important; */
+}
+.apply-header > h2 {
+  /* padding: 0 1.5rem; */
+  margin: 0 0.8rem 0 0.4rem;
+}
+.apply-header > span {
+  /* padding: 0 1.5rem; */
+  margin: 0 0.8rem 0.0rem 0.4rem;
+  /* padding: 0 0.8rem 0.2rem 0.4rem; */
+}
+.apply-header.applying {
+  margin-right: auto;
+}
+.apply-header.existing {
+  margin-left: auto;
+  white-space: pre-line;
+}
+.wrap-actions {
+  display: flex;
+  margin: auto;
+  margin-top: 1.5rem;
+  background: hsl(var(--hue-2), 30%, 80%, 0.5);
+}
+.wrap-actions > h2 {
+  background: var(--myh-yellow);
+  text-align: center;
+  padding: 1rem;
+  /* display: inline; */
+  display: table;
+  margin: auto;
+}
+
+.applies {
+  /* display: flex; */
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  justify-content: space-around;
+  /* justify-content: space-between; */
+  /* justify-content: center; */
+  align-items: center;
+  z-index: 20;
+  padding: 0.4rem 1.2rem;
+}
+.applies > .apply-header:first-of-type {
+  text-align: left;
+}
+
+.arrow { /* box of banner links */
+  --arrow-width-start: calc(4 * var(--line-width));
+  --arrow-width: var(--arrow-width-start);
+  --arrow-front: 1rem;
+  margin-bottom: var(--pad-section-inner);
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-align: right;
+
+  --banner-color: transparent;
+  clip-path: polygon(0 0,
+     calc(96% - 0.5 * var(--arrow-front)) 0,
+     calc(95% + 0.5 * var(--arrow-front)) 50%,
+     calc(96% - 0.5 * var(--arrow-front)) 100%,
+     calc(6%  - 0.5 * var(--arrow-front)) 100%,
+     calc(4%  + 0.5 * var(--arrow-front)) 50%,
+     calc(6%  - 0.5 * var(--arrow-front)) 0,
+     0 0);
+  transition: clip-path 1.0s;
+}
+.arrow::before, .arrow::after { /* make the arrows */
+  position: absolute;
+  content: "";
+  top: 0;
+  height: 100%;
+  width: var(--arrow-width);
+  /* background: linear-gradient(to right, var(--fg-1) 0%, transparent 100%); */
+  /* box-shadow: 1px 1px 5px 3px var(--box-regular-color-flip); */
+  transition: width 0.4s;
+  z-index: -1;
+}
+.arrow::before { /* make the arrow */
+  left: 0rem;
+  /* clip-path: polygon(0 0, calc(50% - 0.2rem) 0, calc(100% - 0.8rem) 50%, calc(50% - 0.2rem) 100%, 0 100%); */
+  --half: calc(50% - 0.5*var(--arrow-width-start) + var(--line-width));
+  clip-path: polygon(0 0, var(--half) 0, calc(100% - var(--arrow-width-start) + var(--line-width)) 50%, var(--half) 100%, 0 100%);
+}
+.arrow::after { /* make the arrow */
+  /* background: linear-gradient(to right, transparent -50%, var(--banner-color) 130%); */
+  right: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%, 40% 50%);
+}
+.arrow:hover {
+  --arrow-width: 80%;
+  --arrow-front: 2rem;
+}
+

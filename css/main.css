@@ -1,0 +1,1252 @@
+/* vim: tabstop=2 shiftwidth=2 */
+@import "dev-env.css";
+
+@import "peripheral.css";
+@import "header.css";
+@import "media.css";
+/* @import "layout-components.css"; */
+@import "input.css";
+@import "component/actions.css";
+@import "component/articles.css";
+@import "component/calendar.css";
+
+
+/* wanted to put in own file but wasnt compatible with live reload solution... */
+:root { /* general vars */
+  /* SIZES */
+  --space:             1.2rem;
+  --space-lg:          1.6rem;
+  --space-edges:       0.4rem;
+
+  /* should also use: */
+  --pad-section:       1.0rem;
+  --pad-section-inner: 0.4rem;
+  --pad-to-edge:       0; /* hug outer sides until start putting padding around */
+  
+  --sidebar-margin:    1.0rem;
+  /* --header-height:     calc(2 * var(--space)); */
+  /* --link-offset:       calc( var(--header-with-menu-height)); */
+  --side-min-fraction: 0.30;
+  --side-min-pixels:   300px;
+  --side-max-fraction: 0.70;
+  --side-max-pixels:   500px;
+
+  --header-height:     4rem; /* the slim header when not open */
+  --logo-top-height:   5rem; /* this ok - height of pre-header logo */
+  --article-img-above-margin: 6rem;
+
+  --line-width:        0.4rem; /* main design line/border width */ /* 0.125 normally 2px but nah ends up weird when font scales to like 1.67 and shize */
+  --content-max-width: 1000px;
+
+  --perspective:       100;
+  --parallax:          12;
+  --parallax-scale:    calc(1 + (1 / var(--perspective) * var(--parallax)));
+  --parallax-px:       calc(-1px * var(--parallax));
+  --parallax-sm:       calc(0.50 * var(--parallax));
+  --parallax-sm-scale: calc(1 + (1 / var(--perspective) * var(--parallax-sm)));
+  --parallax-sm-px:    calc(-1px * var(--parallax-sm));
+  --para:              var(--parallax-sm);
+  --para-px:           var(--parallax-sm-px);
+  --para-scale:        var(--parallax-sm-scale);
+
+  /* COLORS */
+  --hue-1:             180;
+  --hue-2:             208;
+  --hue-3:              55;
+  --hue-4:              0;
+  /* --myh-yellow:        hsl(55, 100%, 51%); */
+  --myh-yellow:        hsl(55, 89%, 64%); /* tone of yellow when slightly transp */
+  --bg-light-blue:     hsl(205, 61%, 90%);
+  --bg-light-blue-2:   hsl(201, 62%, 85%);
+  /* --good-yellow:        hsl(49, 85%,70%, 0.4); */
+  --lum-dark-1:         5%;
+  --lum-dark-2:        15%;
+  --lum-dark-3:        25%;
+  --lum-light-1:       calc(100% - var(--lum-dark-1));
+  --lum-light-2:       calc(100% - var(--lum-dark-2));
+  --lum-light-3:       calc(100% - var(--lum-dark-3));
+  --sat-low-1:           4%;
+  --sat-low-2:          10%;
+  --sat-mid-1:          17%;
+  --sat-mid-2:          23%;
+  --sat-high-1:         38%;
+  --sat-high-2:         50%;
+
+  --light-1:           hsl(var(--hue-2), var(--sat-low-1), var(--lum-light-1));
+  --light-text:        hsl(29, var(--sat-mid-2), var(--lum-light-1));
+
+  --nav-accent: hsla(var(--hue-3), var(--sat-mid-1), var(--lum-dark-3), 0.75);
+  --neutral-accent: #9ae; /* link? */
+  --dark-1:     hsl(var(--hue-1),  var(--sat-low-1),  var(--lum-dark-1));
+  --dark-2:     hsl(var(--hue-2),  var(--sat-low-1),  var(--lum-dark-2));
+
+  --opacity-regular:  0.25;
+  --opacity-faint:    0.12;
+  --box-regular-color:    hsla(0, 0%, var(--lum-dark-1), var(--opacity-regular));
+  --box-faint-color:      hsla(0, 0%, var(--lum-dark-1), var(--opacity-faint));
+  --box-regular-color-flip: var(--box-regular-color); /* light mode always dark shadows */
+  --box-faint-color-flip:   var(--box-faint-color);
+
+  --gradient-bg-main: linear-gradient(-77deg, hsl(280, var(--sat-low-2), 12%), hsl(100, var(--sat-low-2), 12%));
+  /* --heading-on-img-bg: linear-gradient(30deg, */
+  /*     hsl(var(--hue-2), var(--sat-mid-1), 25%, 0.50) 30%, */
+  /*     hsl(var(--hue-1), var(--sat-mid-1), 10%, 0.30) 50%); */
+  --heading-on-img-bg: hsl(var(--hue-2), var(--sat-mid-1), 25%, 0.50);
+  --heading-no-img-bg: linear-gradient(to bottom,
+      /* transparent -50%, */
+      hsl(var(--hue-2), var(--sat-mid-1), 25%, 0.20),
+      hsl(var(--hue-2), var(--sat-mid-2), 25%, 0.80) 80%
+      );
+  --section-bg: hsl(var(--hue-4), var(--sat-mid-2), 68%, var(--opacity-faint));
+
+  
+  --border-opacity:      0.20;
+  --light-border-color:  hsl(var(--hue-1), 7%, 0%, var(--border-opacity));
+  --thin-border-width:   0px;
+
+  --fg-1:       var(--dark-1);
+  --fg-2:       var(--dark-2);
+
+  --lum-fg-1:   var(--lum-dark-1);
+  --lum-fg-2:   var(--lum-dark-2);
+  --lum-fg-3:   var(--lum-dark-3);
+  --bg-1:       var(--light-1);
+  --bg-2:       var(--light-text);
+  --lum-bg-3:   var(--lum-light-3);
+  --lum-bg-1:   var(--lum-light-1);
+  --lum-bg-2:   var(--lum-light-2);
+
+  --applying-color: hsl(var(--hue-1), var(--sat-mid-1), 50%, 0.6);
+  /* --applying-color: var(--myh-yellow); */
+  /* --applying-color: hsl(55, 100%, 51%, 0.8); */
+  --existing-color: hsl(var(--hue-2), var(--sat-mid-1), 50%, 0.6);
+  /* --existing-color: hsl(var(--hue-2), var(--sat-mid-1), 10%, 0.8); */
+  /* was digging with hue at 180 and 208 respectively. green/blue */
+  
+  --search-visible: none;
+  --nav-visible: none;
+  --display-tagline: none;
+  /* --search-visible: hidden; */
+  /* --nav-visible: hidden; */
+}
+
+@media screen and (min-width: 700px) {
+  :root {
+    --space: 1.5rem;
+    --space-lg: 2.0rem;
+    --display-tagline: inline-flex;
+  }
+  /* .tagline { display: inline-flex; } */
+}
+@media screen and (min-width: 1100px) {
+  :root {
+    --pad-to-edge: var(--space-edges);
+    --nav-visible: block;
+    /* --nav-visible: visible; */
+    --search-visible: block;
+    /* --search-visible: visible; */
+  }
+ .applies {
+   flex-direction: row;
+   display: flex;
+   /* align-items: space-between; */
+   /* align-items: inherit; */
+  }
+ .apply-header > * {
+   display: block;
+ }
+}
+@media screen and (max-width: 600px),
+       screen and (max-height: 600px) {
+  :root {
+    --space: 0.8rem;
+    --space-lg: 1.2rem;
+  }
+ .applies {
+   flex-direction: column;
+   /* align-items: space-between; */
+   align-items: inherit;
+  }
+ .apply-header > * {
+   display: inline;
+ }
+}
+@media not all and (min-resolution:.001dpcm), /* is safari */
+       (prefers-reduced-motion: reduce) {     /* wants no parallax */
+  :root {
+    --perspective: 1; /* just to be sure */
+    --parallax:    0;
+  }
+}
+@supports (-webkit-overflow-scrolling: touch) { /* iOS devices */
+  body { /* prevent insane bumping of p font size in landscape and more */
+    text-size-adjust: 100%; -webkit-text-size-adjust: 100%;
+  }
+}
+@media only screen and (-webkit-device-pixel-ratio: 3) {
+  :root { /* *im thinking this is what it's about. 3 vs 2 pixels per pixel */
+  }
+}
+@media only screen and (min-device-width : 375px) and (max-device-width : 812px) and (-webkit-device-pixel-ratio : 3) {
+  /* iphone x */
+} @media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
+  /* iphone 6-8. i mean not really tho could be loads?? */
+} @media only screen and (min-device-width : 414px) and (max-device-width : 736px) {
+  /* 6-8 plus */
+}
+@media screen and (max-width: 400px) {
+  :root {
+    /* font-size: 0.80rem; */
+  }
+}
+@supports (backdrop-filter: blur(1px)) {
+ 
+}
+@supports not (backdrop-filter: blur(1px)) {
+  /* fallbacks for firefox... */
+ 
+}
+
+* {
+  box-sizing: border-box;
+  /* margin:  0.1rem; */
+  /* padding: 0.1rem; */
+}
+
+html {
+  /* height: 100%; */ /* setting height 100% makes sticky header disappear after that amount */
+  /* which isnt good, but investigate for sticky/parallax effects - means sticky sections without prog higher z-index chaos? */
+ 
+  overflow-x: hidden; /* gotta be on both or doesnt work on iphone hmm */
+  overflow-y: visible;
+  scroll-behavior: smooth; /* makes in-page links scroll to target beautifully in chrome */
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--fg-1);
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  font-size: 0.9rem;
+  
+  background: linear-gradient(to bottom,
+    transparent 2%,
+    var(--bg-light-blue) 8%,
+    var(--bg-light-blue-2) 25%,
+    var(--bg-light-blue-2) 60%,
+    var(--bg-light-blue) 70%,
+    transparent 90%
+    );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* background-color: var(--bg-1); */
+  /* background-color: var(--bg-light-blue); */
+  transform: translateZ(0px); /* needed by some browsers */ /* on parent of parallax wrapper (which is main) */
+}
+
+
+ul {
+  padding-inline-start: 0.4rem;
+  margin: 0.2rem 0;
+}
+
+li {
+  list-style: none;
+  /* padding: 0 0.5em 0 0; */
+  padding-right: 0.4em;
+}
+
+nav a {
+  /* color: var(--fg-2); */
+  /* background: hsl(var(--hue-3), 20%, 60%, 0.2); */
+}
+nav a, menu a, .menu a, section h2 > a, section h1 > a {
+  text-decoration: none;
+}
+
+.visually-hidden {
+  display: none;
+  visibility: hidden;
+}
+
+
+
+menu {
+  /* overflow-x: scroll; */
+  /* position: relative; */
+  display: flex;
+  padding: 0;
+  /* flex-wrap: wrap; */
+  /* flex: 1 2 auto; */
+}
+.menu { /* ul usually inside a menu, should go in an actual menu or nav */
+  /* display: flex; /1* hmm if skip flex on this then .areas behaves reasonable... *1/ */
+  justify-content: space-around;
+  align-items: center;
+  /* flex-wrap: nowrap; */
+  flex: 1 1 auto;
+}
+.menu > li {
+  padding: 0.6em;
+  background: linear-gradient(to bottom, var(--bg-2) -40%, transparent 170%);
+}
+.menu > li:hover {
+  /* filter: invert() contrast(100%); */
+  filter: invert() contrast(70%) brightness(130%);
+  /* padding: 0.4em; */
+  /* background: linear-gradient(to bottom, var(--bg-2) -30%, transparent 130%); */
+}
+.menu-down {
+  display: flex;
+  flex: 1 2 auto;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.menu-down li {
+  /* min-width: 100%; /1* ensure each gets own line *1/ */
+  min-width: 55%; /* ensure each gets own line */
+  /* annoying is it takes that as off like, maximum possible, instead of self */
+  background: linear-gradient(to bottom,
+    hsl(var(--hue-1), 30%, 40%, 0.3) 0%,
+    hsl(var(--hue-2), 30%, 40%, 0.3) 120%);
+  padding: 0.4rem;
+}
+.menu-across {
+  display: flex; /* hmm if skip flex on this then .areas behaves reasonable... */
+  overflow-x: scroll;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: space-between;
+  width: 100%; /* maybe not necessarily tho... but probably */
+}
+.menu-across > li {
+  margin: 0 0.4rem;
+}
+
+nav {
+  /* position: relative; */
+  display: flex;
+  overflow-x: scroll;
+  /* flex-wrap: wrap; */
+  flex: 0.2 2 auto;
+  /* background: linear-gradient(-77deg, var(--bg-1) 0%, var(--nav-accent) 50%); */
+  /* background-color: var(--fg-2); */
+  color: var(--bg-1);
+}
+nav > ul > li:hover {
+  background: var(--fg-1);
+  /* filter: invert(); */
+}
+
+.nav-tools { /* top tool menu */
+  /* position: absolute; */
+  position: relative;
+  right: 0; bottom: 0;
+  color: var(--fg-1);
+  z-index: 10;
+  margin-right: 1rem;
+}
+
+.nav-banners { /* box of banner links */
+  /* margin: 1.0rem 0; */
+  /* height: auto; */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* margin: auto; */
+  padding-bottom: 6rem; /* haphazard adj for what appears to be a bug? w section expansion vs content */
+}
+.box-banner { /* box of banner links */
+  position: sticky;
+  top: var(--header-height);
+  left: 0;
+}
+/* new box banner DIY */
+.box-banner { /* box of banner links */
+  --arrow-width-start: calc(4 * var(--line-width));
+  --arrow-width: var(--arrow-width-start);
+  --arrow-front: 1rem;
+  margin-bottom: var(--pad-section-inner);
+  padding: 1rem;
+  padding-right: 2.0rem;
+  position: relative;
+  text-align: right;
+  
+  --banner-color: transparent;
+  --border-color: var(--fg-2);
+  background: linear-gradient(to right, 
+         var(--banner-color) -100%,
+         var(--fg-2) 120%);
+    
+  --path: polygon(0 0, calc(100% - var(--arrow-front)) 0,
+             100% 50%, calc(100% - var(--arrow-front)) 100%,
+               /* 0 100%, 0 50%); */
+               0 100%);
+    
+  clip-path: var(--path);
+  transition: clip-path 1.0s;
+}
+
+.box-banner.light {
+  --border-color: var(--bg-2);
+}
+.box-banner.alpha {
+  --border-color: hsl(var(--hue-2), var(--sat-low-2), var(--lum-light-3), 0.5);
+}
+.box-banner.left {
+  --path: polygon(100% 0, 100% 100%, 
+             calc(0% + var(--arrow-front))  100%,
+             0 50%,
+             calc(0% + var(--arrow-front))   0);
+             /* very nice anim btw when switch right-left. explore... */
+}
+.box-banner::before, .box-banner::after { /* make the arrows */
+  position: absolute;
+  content: "";
+  top: 0;
+  height: 100%;
+  width: var(--arrow-width);
+  transition: width 0.4s;
+  z-index: -1;
+}
+.box-banner::before { /* make the arrow */
+  background: linear-gradient(to right, var(--border-color) 0%, transparent 100%);
+  left: 0rem;
+  --half: calc(50% - 0.5*var(--arrow-width-start) + var(--line-width));
+  clip-path: polygon(
+     0 0, var(--half) 0,
+     calc(100% - var(--arrow-width-start) + var(--line-width)) 50%,
+     var(--half) 100%, 0 100%);
+}
+
+.box-banner::after {
+  background: linear-gradient(to right, transparent -50%, var(--banner-color) 130%);
+  right: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%, 40% 50%);
+}
+
+.box-banner.left::before { /* make the arrow */
+  background: linear-gradient(to left, var(--border-color) 0%, transparent 100%);
+  --half: calc(100% - (50% - 0.5*var(--arrow-width-start) + var(--line-width)));
+  clip-path: polygon(100% 0, 100% 100%,
+         var(--half) 100%,
+         calc(0% + var(--arrow-width-start) - var(--line-width)) 50%,
+         var(--half) 0%);
+   right: 0;
+   left: unset;
+ }
+.box-banner.left::after {
+  clip-path: polygon(100% 0, 100% 100%, 50% 100%, 50% 50%, 50% 0);
+  opacity: 0.5;
+}
+
+.box-banner a {
+  font-size: 1.3rem;
+  line-height: 1.4rem;
+  text-decoration: none;
+  align-self: center;
+  color: var(--bg-2);
+  font-weight: 600;
+  z-index: 10;
+}
+.box-banner a h1, .box-banner a > div, .box-banner img {
+  display: inline;
+  width: 30%;
+}
+.box-banner:hover {
+  /* XXX some weird thing on article-section h2 hover, these also get affected */
+  /* filter: saturate(90%); */
+  --arrow-width: 80%;
+  --arrow-front: 2rem;
+}
+.box-banner:hover a {
+  text-shadow: 1px 1px 1px var(--box-faint-color);
+}
+.box-banner.green {
+  --banner-color: hsl(110, var(--sat-high-2), 70%, 0.7);
+}
+.box-banner.yellow {
+  --banner-color: var(--myh-yellow);
+}
+.box-banner.blue {
+  --banner-color: hsl(233, 60%, 30%, 0.8);
+}
+.box-banner.black {
+  --banner-color: var(--dark-2);
+}
+
+.box-banner.advanced  {
+  position: relative;
+  display: flex;
+  padding: 0;
+  text-align: left;
+  height: 50%;
+}
+.box-banner.advanced > img {
+  position: relative;
+  left: 0; top: 0;
+  height: 100%;
+  object-fit: cover;
+}
+.box-banner.advanced > h3 {
+  position: absolute;
+  left: 0.6rem;
+  top: 15%; /* basically midddle, of square eu star anyways, other stuff? */
+  /* det breaks on longer text haha */
+  text-align: left;
+  color: var(--bg-2);
+}
+.box-banner.advanced > a  {
+  position: relative;
+  height: auto;
+  /* font-size: 1.2em; */
+  line-height: 1.2em;
+  padding: 0.4rem 1.6rem 0.4rem 0.4rem;
+  white-space: pre-wrap;
+}
+
+
+.nav-communications {
+  /* display: flex; */
+  /* flex-wrap: nowrap; */
+}
+.nav-communications > ul {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+.nav-communications > ul > li {
+  margin: 0 0.5rem;
+}
+
+.widescreen-safe > h2 {
+}
+
+main {
+  border: 0; /* covered by .line-bottom-h */
+  /* max-width: var(--content-max-width); */
+  /* margin: auto; /1* causes everything always squished in middle no matter flexin *1/ */
+
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: inset 2px 1px 17px 7px var(--box-faint-color);
+  z-index: 2;
+}
+
+.content { /* anything below intro */
+  z-index: 15;
+  /* background: var(--bg-1); */
+  /* OR */
+  /* background: hsla(0, 10%, 80%, 0.7); */
+  /* backdrop-filter: blur(2rem) brightness(120%); */
+  /* OR */
+  background: hsla(0, var(--sat-low-1), var(--lum-light-2), 1.0);
+  /* padding-top: 0.8rem; */
+  
+  max-width: 1350px;
+  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: auto;
+  padding-bottom: 2rem;
+}
+.content > * {
+  justify-content: flex-start;
+  /* justify-content: space-between; */
+  /* align-items: flex-start; */
+  /* flex: 1 1; */
+}
+/* .content section { */
+/*   margin-bottom: 2.0rem; */
+/* } */
+
+.primary { /* general content on left side */
+  flex: 1.5 3 400px;
+  /* min-width: max(60%, 400px); */
+  /* max-width: 100%; */
+  max-width: 750px;
+  margin: 0;
+  /* margin-right: 0.4rem; */
+  /* border-right: 0.4rem solid; */
+  /* border-right: 1px solid; */
+ 
+  display: flex; /* needed here as well no? */
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: center;
+  /* align-items: center; *1/ /1* makes top not line up nice :/ */
+  /* align-items: space-between; /1* makes top not line up nice :/ */
+  align-items: normal;
+}
+.primary > section {
+  /* padding-left: var(--pad-to-edge); */
+}
+.sidebar { /* extra content in right sidebar, responsively wrapping to below primary as needed */
+  /* flex: 2 1 auto; */
+  flex: 2 4 200px;
+  max-width: 400px;
+  position: relative;
+  /* justify-content: space-between; */
+  justify-content: flex-start;
+  align-items: space-between;
+  margin-left: var(--sidebar-margin);
+  /* border-left: 0.4rem solid; */
+  /* border-left: 1px solid; */
+  
+  display: flex;
+  /* flex-flow: column wrap; */
+  flex-wrap: wrap;
+  flex-direction: column; /* without still wraps same BUT stuff isnt fitted to width etc */
+  /* min-width: max(calc(100% * var(--side-min-fraction)), var(--side-min-pixels)); */
+  /* /1* min-width: calc(100% * var(--side-min-fraction)); *1/ */
+  /* flex: 1 2 30%; */
+  flex: 1 2 150px;
+  /* flex: 0.1 5 30%; */
+}
+.sidebar > section > h2 { /* hug edge until we hit max-width */
+  /* padding-right: var(--pad-to-edge); */
+  /* other issue with this is would need to keep track of more things to handle when flex is wrapping etc. no go? */
+  padding: 1.2rem 7.0rem 1.2rem 1.2rem;
+}
+.sidebar > section  {
+  padding-bottom: 1rem;
+}
+
+section { /* one main section (header + piece of content) */
+  /* flex: 2 1 auto; */
+  width: 100%;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+
+  /* background: var(--section-bg); */
+  /* background: var(--fg-1); */
+
+  /* padding: var(--pad-section-inner); */
+  /* padding: 0 var(--pad-section-inner) var(--pad-section-inner) var(--pad-section-inner); */
+  /* padding-bottom: var(--pad-section-inner); */
+  border-bottom: 4px solid;
+  box-shadow: 0px 1px 7px 4px var(--box-faint-color);
+}
+section ul {
+  padding: 0 0.4rem;
+  /* border-bottom: 2px solid; */
+}
+/* section h1, section h2 { */
+section > h1, section > h2 {
+  text-align: center;
+  padding:  var(--space) var(--pad-section-inner);
+  padding: 1.2rem 1.2rem 1.2rem 5rem;
+  width: 100%;
+  /* z-index: -1; */
+  z-index: 12;
+  margin: 0;
+
+  position: sticky;
+  top: 0;
+}
+section > h1 {
+  background: var(--fg-2);
+  color: var(--bg-2);
+  /* margin: 0; */
+}
+section > h2 { /* is also img bg somehow... fix */
+  color: var(--bg-1);
+  background: linear-gradient(to right,
+    hsl(var(--hue-2), var(--sat-high-1), 8%, 0.87) -25%,
+    hsl(var(--hue-2), var(--sat-mid-1), 17%, 0.95) 50%,
+    hsl(var(--hue-2), var(--sat-high-1), 8%, 0.87) 125%);
+  box-shadow: 1px 2px 6px 2px var(--box-faint-color);
+  
+  position: sticky;
+  top: 0;
+  /* top: var(--header-height); */
+  /* z-index: 10; */
+  left: 0;
+  z-index: 30;
+  backdrop-filter: blur(4px);
+
+}
+section > h3 {
+  padding: 0.4rem 0.8rem;
+  color: var(--fg-2);
+  background: var(--bg-2);
+  margin-bottom: 0.4em;
+}
+section > ul > li > h3 { /* from calendar div - could be generic for minor headings?? */
+  text-align: center;
+  width: 100%;
+  padding: 1rem 0;
+  margin: 0 0;
+  background: linear-gradient(70deg, transparent -10%, var(--bg-1), var(--bg-2), transparent 110%);
+  opacity: 0.9;
+  border-left: 0.4rem solid;
+}
+p {
+  padding-left: 0.4rem;
+  max-width: 700px;
+  margin: auto;
+}
+section > p {
+  padding: 0.4rem 1.2rem 0.8rem;
+}
+.flip-headings > h2 {
+  color: var(--fg-1);
+  background: var(--bg-2);
+}
+
+.contact-info > p {
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+}
+
+section h2 > a { /* filter publications stuff */
+  text-decoration: none;
+}
+.teaser { /* generally page intro text */
+  font-size: 1.07em;
+  padding: 1em;
+ 
+}
+
+.filter { /* filter publications stuff */
+}
+.filter > h3 { /* filter publications stuff */
+  border-left: 0.4rem solid;
+}
+.filter > ul { /* filter publications stuff */
+  margin-left: 0.4rem;
+}
+.filter-submenu > li:first-of-type { /* filter publications stuff */
+  font-weight: 600;
+  margin-top: 0.8rem;
+  margin-bottom: 0.4rem;
+  /* border-bottom: 0.2rem solid; */
+}
+
+.filter-submenu > li:nth-of-type(2) { /* filter publications stuff */
+  border-top: 0.2rem solid;
+}
+.filter-submenu > li > a {
+  display: flex;
+  justify-content: space-between;
+}
+.filter-submenu > li > a > span {
+  position: absolute;
+  right: 0;
+  margin-right: 0.8rem;
+  font-size: 0.87em;
+}
+
+.menu-item-number, .filter-submenu > li > a > span { /* same shit */
+  margin-left: 1rem;
+  text-align: right;
+  /* filter: invert(); */
+  /* padding: 0.2rem 0.8rem 0; */
+  /* /1* margin: -0.8rem; *1/ */
+  background: var(--fg-2);
+  color: var(--bg-2);
+  
+  padding: 0.4rem 1.8rem 0.8rem 1.2rem;
+  margin: -0.8rem;
+}
+
+.subscribe {
+
+}
+/* main > section:first-of-type { /1* top section: no upper border *1/ */
+/* } */
+/* main > section:last-of-type { /1* last section, no bottom border *1/ */
+/* } */
+
+
+a {
+  color: var(--fg-2);
+}
+a:focus, a:hover {
+  /* transform: scale(1.15); */
+  filter: brightness(115%) drop-shadow(0.2rem 0.2rem 0.3rem 0.1rem var(--fg-1));
+  /* text-shadow: 1px 1px 1px var(--bg-2); */
+  text-shadow: 1px 1px 1px var(--box-faint-color);
+  /* box-shadow: 1px 1px 3px var(--fg-2); */
+}
+
+
+
+/* h4::first-yetter { /1* nice looking fancy. why isnt applying within category?? *1/ */
+/*   font-size: 110%; */
+/*   /1* filter: brightness(110%); *1/ */
+/* } */
+/* h4::first-letter { /1* try smthing *1/ */
+/*   font-size: 110%; */
+/*   background: var(--myh-yellow); */
+/*   padding-left: 0.2rem; */
+/* } */
+
+/* /1* bs to recreate logo sorta. but need first two letters obvs. *1/ */
+/* h4 { */
+/*   position: relative; */
+/* } */
+/* h4::before { /1* try smthing *1/ */
+/*   position: absolute; */
+/*   left: -0.4rem; top: -0.2rem; */
+/*   content: ""; */
+/*   background: var(--myh-yellow); */
+/*   width: 1rem; */
+/*   height: 1.0rem; */
+/*   z-index: -1; */
+/*   padding: 0.2rem; */
+/*   padding-left: 0.2rem; */
+/* } */
+/* h4::first-letter { /1* nice looking fancy. why isnt applying within category?? *1/ */
+/*   font-size: 120%; */
+/*   margin-right: 0.4rem; */
+/* } */
+
+.absolute {
+  position: absolute;
+  top: 0;
+}
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-flow: column wrap;
+}
+.flex-break, .flex-break-col { flex-basis: 100%; }
+.flex-break     { height: 0; } /* force next flex item to new row */
+.flex-break-col { width: 0;  } /* force next flex item to new col */
+.grid {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(6, auto);
+}
+.stretch-bg {
+  height: 100%;
+  width: 100%;
+  top: 0; left: 0;
+  padding: 0;
+  position: absolute;
+  object-fit: cover;
+  overflow: hidden;
+  z-index: -1;
+}
+
+
+.publications > ul > li > h2 {
+  background-color: var(--fg-2);
+}
+
+.publications-latest > li {
+  padding: 0.4rem;
+  margin-right: 10%;
+}
+
+.raw-text > p {
+  padding: 0.8rem 1.5rem;
+}
+
+
+/* box with image and description of an area of education */
+.area-box {
+  /* background: var(--bg-2); */
+  /* margin: 1rem; */
+  /* width: 350px; */
+  /* width: 100%; */
+  /* max-width: 500px; */
+  min-height: 300px;
+  flex: 2 1 350px;
+  display: flex;
+  /* justify-content: space-between; */
+  justify-content: flex-end; /* better */
+  /* align-items: flex-end; */
+  flex-direction: column;
+  /* width: 50%; */
+  overflow: hidden;
+  position: relative;
+  color: var(--bg-1);
+  /* background: var(--bg-2); */
+  z-index: -1;
+}
+/* .area-box a > img { /1* box with image and description of an area of education *1/ */
+/*   background: var(--bg-2); */
+/*   margin: 1rem; */
+/* } */
+.area-box a > h2 { /* box with image and description of an area of education */
+  color: var(--bg-1);
+  padding: 0.4rem 1rem;
+  margin: 0;
+  backdrop-filter: blur(1px) brightness(75%) contrast(80%);
+  /* margin-right: 40%; */
+}
+.area-box p { /* box with image and description of an area of education */
+  /* margin-top: 40%; */
+  /* mix-blend-mode: difference; */
+}
+.area-box > div { /* box with image and description of an area of education */
+  /* margin-right: 50%; */
+  padding: 0.4rem;
+  /* position: relative; */
+  /* bottom: 0; */
+}
+/* .area-box > div, .area-box a > h2 { /1* box with image and description of an area of education *1/ */
+.area-box > div { /* box with image and description of an area of education */
+  backdrop-filter: blur(16px) brightness(80%) contrast(80%);
+}
+.area-box a img:hover { /* box with image and description of an area of education */
+  transform: scale(1.08) translateX(20px);
+}
+.area-box a img {
+  transform-origin: center;
+  transition: transform 1.5s;
+}
+
+
+object { /* pdf n that */
+  width: 100%;
+  min-height: 50vh;
+  margin: 2rem 0;
+}
+iframe {
+ margin: auto;
+}
+
+
+.social-links {
+ /* fb/twitter/email share. make a more fun widget? */
+ 
+}
+
+
+.intro {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+  margin: auto;
+  z-index: 1;
+  width: 100%;
+  max-width: 1166px;
+  /* margin-bottom: -2rem; */
+  /* padding-bottom: 2rem; /1* ensure blur sticks out... say what? i forget purpose *1/ */
+
+  box-shadow: 2px 1px 9px 6px var(--box-faint-color);
+  background: hsla(0, 10%, 80%, 0.7);
+  backdrop-filter: blur(2rem) brightness(120%);
+  -webkit-backdrop-filter: blur(2rem) brightness(120%);
+}
+.intro > * {
+  border: var(--thin-border-width) solid var(--light-border-color);
+}
+
+section p.read-more { /* generic look for link at end of section */
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-align: right;
+  /* margin-right: var(--pad-section); */
+  margin: var(--pad-section-inner) 0;
+  /* margin-right: var(--pad-section); */
+  /* border: var(--thin-border-width) solid var(--light-border-color); */
+}
+section p.read-more::after { /* should auto insert right arrow icon... */
+  content: " >>";
+  font-size: 0.7em;
+}
+
+#site-logo, .site-logo {
+  position: relative;
+  margin-top: 0.6rem;
+  margin-bottom: 0.2rem;
+  padding-left: 1rem;
+  height: 5rem;
+}
+
+
+
+
+.fade-5 { opacity: 0.62; }
+.darken-5 { filter: brightness(55%); }
+.blur-behind {
+  backdrop-filter: blur(1rem);
+  -webkit-backdrop-filter: blur(1rem);
+}
+.stick-up { /* make sticky just below header */
+  position: sticky;
+  top: var(--header-height);
+  /* top: 0; */
+}
+.stick-up-high { /* make sticky just below header */
+  position: sticky;
+  top: -150px;
+}
+.hidden { visibility: hidden; }
+.inline { display: inline; }
+.box-regular { box-shadow: 2px 1px 5px 7px var(--box-regular-color); }
+.box-faint {   box-shadow: 2px 1px 5px 3px var(--box-faint-color); }
+
+
+.pagination {
+  padding: 1rem;
+}
+.pagination > * {
+  display: inline;
+}
+.pagination > ul > li {
+  display: inline;
+}
+.pagination-active {
+  font-weight: 900;
+}
+
+.utbildning-color {
+  background: var(--myh-yellow);
+  padding: 0.2rem 0.8rem;
+}
+
+.paper-bg {
+  box-shadow: 0px 0px 9px 0px var(--box-faint-color);
+  transition: all 0.5s;
+  background: linear-gradient(13deg, hsl(30, 12%, 89%), hsl(19, 8%, 92%));
+  transform: rotateZ(2deg);
+}
+.post-it {
+   background: hsl(55, 55%, 80%, 0.95);
+}
+.paper-bg:hover {
+  /* transform: translateZ(20deg); */
+  transform: rotateZ(3deg);
+}
+
+/*************
+ *  PARALLAX
+ *************/
+.perspective, .perspective-top { /* default perspective for main. */
+  perspective: calc(1px * var(--perspective));
+}
+.perspective.top, .perspective-top { /* default perspective for main. */
+  /* perspective-origin: top; /1* starts where i want but then want it going other dir... or maybe going up-away better, more understated... *1/ */
+  /* perspective-origin: 50% 0%; /1* starts where i want but then want it going other dir... or maybe going up-away better, more understated... *1/ */
+  perspective-origin: 50% 12%; /* starts where i want but then want it going other dir... or maybe going up-away better, more understated... */
+}
+.perspective.left { /* default perspective for main. */
+  perspective-origin: left; /* starts where i want but then want it going other dir... or maybe going up-away better, more understated... */
+}
+.parallax-sm {
+  --para: var(--parallax-sm);
+  --para-scale: var(--parallax-sm-scale);
+}
+.parallax-bg {
+  --para: var(--parallax);
+  --para-scale: var(--parallax-scale);
+}
+.parallax-fg {
+  --para: calc(-1 * var(--parallax-sm));
+  --para-scale: calc(1.0 / var(--parallax-sm-scale));
+}
+.parallax-sm, .parallax-bg, .parallax-fg {
+  /* guess if top + eg 20/100px Z then also translateY 20%? */
+  /* but then 100% restored to nothing haha. half? */
+  --para-px: calc(-1px * var(--para));
+  transform-origin: top;
+  transform-style: preserve-3d;
+  transform: translateZ(var(--para-px))
+             translateY(calc(0.5 * var(--para) * var(--para-px)))
+             scale(var(--para-scale));
+             /* translateY(calc(2.5 * var(--para) * var(--para-px))) */
+             /* translateY(calc(2.5 * var(--para) * var(--para-px))) */
+}
+
+/*
+ * Individual divs and sections. Attempt to keep not-so-messy.
+ */
+.hero {
+  transform-origin: 50% 100%;
+  border: 0;
+  width: 100%;
+  /* width: 100vw; */
+  max-width: 600px;
+  margin: auto;
+  /* clip-path: polygon(0 0, 100% 0, 95% 120%, 5% 120%, 0 0); */
+}
+.shaped-bg {
+  /* clip-path: polygon(120% 0, 75% 150%, 25% 150%, -20% 0); */
+  clip-path: polygon(100% 0, 90% 130%, 10% 130%, 0% 0);
+}
+
+.tagline {
+  display: none;
+  /* position: sticky; */
+  /* top: 0; */
+}
+
+#birthday-hero {
+  z-index: -1;
+  /* overflow: hidden; */
+  transform-origin: 50% 100%;
+  border: 0;
+  width: 100%;
+  /* width: 100vw; */
+  max-width: 700px;
+  margin: auto;
+  /* box-shadow: 2px 1px 9px 4px var(--box-faint-color); */
+  /* background-color: var(--bg-light-blue-2); */
+  /* background: linear-gradient(to bottom, */
+  /*   var(--bg-light-blue) 15%, */
+  /*   var(--bg-light-blue-2) 25%, */
+  /*   transparent 110%, */
+  /*   ); */
+    /* transparent 0%, */
+}
+#birthday-hero > img {
+  /* width: 100vw; */
+  /* max-width: 1000px; */
+  /* margin: auto; */
+  /* left: calc(0px - var(--space-edges)); */
+  /* z-index: -1; */
+}
+#top-banner {
+  opacity: 0.75;
+  left: 0; top: 0;
+  /* margin: auto; */
+  min-width: calc(100% * var(sides-min-fraction));
+  /* width: 100%; */
+  object-fit: cover;
+
+  animation: top-backdrop 4s ease infinite;
+  animation-play-state: paused;
+}
+#top-banner:hover { animation-play-state: running; }
+@keyframes top-backdrop { /* well this'd be nice but it's CRAZY on the cpu bleh */
+  0%, 50% { backdrop-filter: brightness(100%); -webkit-backdrop-filter: brightness(100%);
+  } 80%   { backdrop-filter: brightness(250%); -webkit-backdrop-filter: brightness(250%);
+  } 100%  { backdrop-filter: brightness(100%); /* or like "none" */ -webkit-backdrop-filter: brightness(100%);
+  }
+}
+
+#logo-top {
+  position: sticky;
+  top:  calc(var(--space) * 5); /* small header and a bit, position for when starts moving off sticky, which is also good fallback when parallax missing... */
+  margin-top: calc(1.5 * var(--space));
+  animation: fade-in-logo 3.5s;
+  transform: translateZ(-10px) scale(1.10); /* hardcoded, always want enabled */
+}
+@keyframes fade-in-logo {
+  0% {
+    opacity: 0.00;
+    background-size: 85%;
+    border-radius: 63%;
+  } 65% {
+    border: 0.35em solid transparent; /* hmm gotta make a bit device-dependent */
+  } 90%, 100% {
+    border: 0.35em solid var(--bg-1); /* hmm gotta make a bit device-dependent */
+    opacity: 0.09;
+    filter: invert() hue-rotate(180deg);
+  }
+}
+
+
+
+/*
+ * FOOTER
+ */
+footer {
+  position: relative;
+  padding: 1rem 2rem; /* handle iphone x+, no harm for rest. TODO also adjust top-shortcut */
+  font-size: 0.9em;
+  width: 100vw;
+
+  border-top: 0.4rem solid;
+  /* z-index: 20; */ /* everything very weird when z-index set even with no sticky or nothing. */
+  
+  background: var(--bg-2);
+  /* background: linear-gradient(to top, hsl(0, 10%, 90%, 0.9) 20%, hsl(0, 10%, 90%, 0.7) 120%); */
+  /* try (actual tru sticky) footer */
+  /* causes some silly ios behavior and might just deal with enough layers already... */
+}
+.footer-content >  * {
+  border: var(--thin-border-width) solid var(--light-border-color);
+}
+
+.footer-column h2::after {
+  content: "";
+  height: 0.2em;
+  background: linear-gradient(to right,
+    transparent 00%,
+    hsla(8, 10%, 18%, 0.1) 10%,
+    hsla(8, 10%, 18%, 0.3) 30%, transparent 90%);
+  width: 16rem;
+  transform: skew(45deg);
+  position: absolute;
+  bottom: -3px;
+  left: -0px;
+}
+footer h2 {
+  display: inline;
+  position: relative; /* needed for ::after trickery */
+  /* width: 50%; */
+  /* border-bottom: 0.20rem solid; */
+}
+footer h4:first-of-type {
+  /* padding-top: 1.0rem; */
+}
+footer h4 {
+  padding-bottom: 0.0rem;
+  /* padding-top: 0.5rem; */
+}
+footer h4 + * {
+  /* padding-bottom: 0.5rem; */
+}
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row wrap;
+
+  /* margin: 1rem 0.4rem; */
+}
+.footer-column {
+  flex: 1 2 auto;
+  /* margin: 0.8rem 1.0rem; */
+  margin: var(--pad-section);
+  padding: var(--pad-section);
+  /* display: flex; */
+  border-bottom: 4px solid;
+  background: var(--section-bg);
+}
+.footer-column h4 {
+  font-weight: 900;
+  /* padding-bottom: 0.4rem; */
+  margin-bottom: 0;
+}
+.footer-column:last-of-type h4 {
+  padding-bottom: 0.0rem;
+}
+.footer-column p {
+  margin-top: 0.4rem;
+  font-weight: 100;
+}
+
+
+.footer-icons {
+  display: flex;
+  flex: 1 2 auto;
+  font-size: var(--space-lg);
+}
+.footer-icons > a {
+  padding: 0.4rem;
+  text-shadow: 0px 0px 0px var(--box-faint-color-flip);
+}
+.footer-icons > a > i {
+  transition: all 0.5s;
+}
+.footer-icons > a:focus, .footer-icons > a:hover {
+  filter: brightness(125%) saturate(75%);
+  background: var(--bg-1);
+  border-radius: 100%;
+  text-shadow: -1px 2px 4px var(--box-regular-color-flip);
+}
+

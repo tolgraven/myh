@@ -1,0 +1,46 @@
+/*
+ * Peripheral and pseudo styling
+ *
+ */
+
+ /* body class, for persistent footer. sticky isnt even correct nomenclature why am i propagating it ugh */
+.sticky-footer-container { /* not sensible/needed for a one-page static as wont have that little content but otherwise v handy i guess? */
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.sticky-footer-container::after { /* TODO: understand exactly why this works, for the footer */
+  content: '\00a0'; /* &nbsp; */
+  display: block;
+  margin-top: var(--space);
+  /* height: 0px; */
+  /* visibility: hidden; */
+}
+
+@supports(scroll-margin-top: 0px) { /* compensate for our sticky header. */
+  .link-anchor { scroll-margin-top: var(--link-offset); } }
+@supports not (scroll-margin-top: 0px) {
+  .link-anchor::before { /* have to compensate due to our sticky header. */
+    display: block;      /* on about section not working was due to overflow: auto clearfix... */
+    content: " ";        /* also various safari vs chrome diff in behavior */
+    margin-top: calc(-1.0 * var(--link-offset));
+    height: calc(1.0 * var(--link-offset));
+    visibility: hidden;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+.float-wrapper { overflow: auto; } /* clearfix */
+/* .float-wrapper::after { */
+/*   content: ""; */
+/*   clear: both; */
+/*   display: table; */
+/* } */
+
+
+
+::selection { /* text selection */
+  background-color: var(--myh-yellow);
+  color: var(--fg-1);
+}
+
