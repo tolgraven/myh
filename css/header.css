@@ -13,7 +13,7 @@ header {
   /* padding: 0 0.8rem; */
   /* height: 0.4rem; */
   height: var(--header-height);
-  transition: max-height 0.2s ease 0.10s;
+  transition: height 0.3s ease 0.1s, max-height 0.2s ease 0.10s;
               /* background 0.0s ease 0.0s; */
               /* display 0.0s linear 0.0s; */
   /* box-shadow: 2px 1px 9px 5px var(--box-faint-color); */

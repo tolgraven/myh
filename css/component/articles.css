@@ -90,7 +90,7 @@
         hsl(var(--hue-2),
         var(--sat-low-1),
         var(--lum-light-3), 0.8) 120%);
-  padding: 1.0rem 1.0rem 3.0rem;
+  padding: 1.0rem 1.0rem 2.0rem;
   border-left: 0.4rem solid;
   box-shadow: -2px 0px 6px 2px var(--box-faint-color);
   /* try like "off" the left border... exentuate (sp??? lol) it sticking out */
@@ -160,7 +160,7 @@
   position: relative;
   left: 0%;
   width: 75%;
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
   border: 0;
 }
 .press-releases > ul > li > .article-text > .article-date {

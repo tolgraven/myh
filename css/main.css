@@ -28,7 +28,7 @@
   --side-max-fraction: 0.70;
   --side-max-pixels:   500px;
 
-  --header-height:     4.2rem; /* the slim header when not open */
+  --header-height:     4.0rem; /* the slim header when not open */
   /* --header-height:     3.6rem; /1* the slim header when not open *1/ */
   --logo-top-height:   5rem; /* this ok - height of pre-header logo */
   --article-img-above-margin: 6rem;
@@ -1059,7 +1059,7 @@ section p.read-more::after { /* should auto insert right arrow icon... */
 .perspective.top, .perspective-top { /* default perspective for main. */
   /* perspective-origin: top; /1* starts where i want but then want it going other dir... or maybe going up-away better, more understated... *1/ */
   /* perspective-origin: 50% 0%; /1* starts where i want but then want it going other dir... or maybe going up-away better, more understated... *1/ */
-  perspective-origin: 50% 12%; /* starts where i want but then want it going other dir... or maybe going up-away better, more understated... */
+  perspective-origin: 50% 30%; /* starts where i want but then want it going other dir... or maybe going up-away better, more understated... */
 }
 .perspective.left { /* default perspective for main. */
   perspective-origin: left; /* starts where i want but then want it going other dir... or maybe going up-away better, more understated... */
