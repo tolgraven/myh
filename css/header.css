@@ -199,9 +199,11 @@ main::before {
 .nav-links > li > a {
   color: var(--bg-1);
 }
-.nav-tools {
-  display: flex;
-  font-size: 0.8em;
+.nav-links > .current-page {
+  background: var(--bg-2);
+}
+.nav-links > .current-page > a {
+  color: var(--fg-2);
 }
 
 .search {
