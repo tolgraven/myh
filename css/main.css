@@ -392,6 +392,7 @@ nav > ul > li:hover {
   text-align: right;
   
   --banner-color: transparent;
+  --banner-color: hsla(var(--fg-1), 0.0);
   --border-color: var(--fg-2);
   background: linear-gradient(to right, 
          var(--banner-color) -100%,
@@ -399,14 +400,15 @@ nav > ul > li:hover {
     
   --path: polygon(0 0, calc(100% - var(--arrow-front)) 0,
              100% 50%, calc(100% - var(--arrow-front)) 100%,
-               /* 0 100%, 0 50%); */
                0 100%);
     
-  clip-path: var(--path);
-  transition: clip-path 1.0s;
+  clip-path: var(--path); -webkit-clip-path: var(--path);
+  transition: clip-path 1.0s, -webkit-clip-path 1.0s;
+  /* SKIP CLIP-PATH HERE for funky big-effect accidentally had in safari recorded on phone... */
 }
 
 .box-banner.light {
+  --banner-color: hsla(var(--bg-1), 0.0);
   --border-color: var(--bg-2);
 }
 .box-banner.alpha {
@@ -429,33 +431,40 @@ nav > ul > li:hover {
   z-index: -1;
 }
 .box-banner::before { /* make the arrow */
-  background: linear-gradient(to right, var(--border-color) 0%, transparent 100%);
+  /* background: linear-gradient(to right, var(--border-color) 0%, transparent 100%); */
+  /* background: -webkit-linear-gradient(to right, var(--border-color) 0%, hsla(0, 0%, 10%, 0.0) 100%); */
+  background: linear-gradient(to right, var(--border-color) 0%, hsla(0, 0%, 90%, 0.0) 100%);
   left: 0rem;
   --half: calc(50% - 0.5*var(--arrow-width-start) + var(--line-width));
-  clip-path: polygon(
+  --path: polygon(
      0 0, var(--half) 0,
      calc(100% - var(--arrow-width-start) + var(--line-width)) 50%,
      var(--half) 100%, 0 100%);
+  clip-path: var(--path); -webkit-clip-path: var(--path);
 }
 
 .box-banner::after {
   background: linear-gradient(to right, transparent -50%, var(--banner-color) 130%);
   right: 0;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%, 40% 50%);
+  --path: polygon(0 0, 100% 0, 100% 100%, 0% 100%, 40% 50%);
+  clip-path: var(--path); -webkit-clip-path: var(--path);
 }
 
 .box-banner.left::before { /* make the arrow */
-  background: linear-gradient(to left, var(--border-color) 0%, transparent 100%);
+  /* background: linear-gradient(to left, var(--border-color) 0%, transparent 100%); */
+  background: linear-gradient(to left, var(--border-color) 0%, hsla(0, 0%, 90%, 0.0) 100%);
   --half: calc(100% - (50% - 0.5*var(--arrow-width-start) + var(--line-width)));
-  clip-path: polygon(100% 0, 100% 100%,
+  --path: polygon(100% 0, 100% 100%,
          var(--half) 100%,
          calc(0% + var(--arrow-width-start) - var(--line-width)) 50%,
          var(--half) 0%);
+  clip-path: var(--path); -webkit-clip-path: var(--path);
    right: 0;
    left: unset;
  }
 .box-banner.left::after {
-  clip-path: polygon(100% 0, 100% 100%, 50% 100%, 50% 50%, 50% 0);
+  --path: polygon(100% 0, 100% 100%, 50% 100%, 50% 50%, 50% 0);
+  clip-path: var(--path); -webkit-clip-path: var(--path);
   opacity: 0.5;
 }
 
@@ -700,7 +709,9 @@ section > ul > li > h3 { /* from calendar div - could be generic for minor headi
   width: 100%;
   padding: 1rem 0;
   margin: 0 0;
-  background: linear-gradient(70deg, transparent -10%, var(--bg-1), var(--bg-2), transparent 110%);
+  /* background: linear-gradient(70deg, transparent -10%, var(--bg-1), 30%, white, var(--bg-2) 70%, transparent 110%); */
+  /* background: -webkit-linear-gradient(70deg, transparent -10%, var(--bg-1), 30%, white, var(--bg-2)); */
+  background: linear-gradient(70deg, var(--bg-1), white, var(--bg-2));
   opacity: 0.9;
   border-left: 0.4rem solid;
 }
@@ -1064,7 +1075,8 @@ section p.read-more::after { /* should auto insert right arrow icon... */
 }
 .shaped-bg {
   /* clip-path: polygon(120% 0, 75% 150%, 25% 150%, -20% 0); */
-  clip-path: polygon(100% 0, 90% 130%, 10% 130%, 0% 0);
+  --path: polygon(100% 0, 90% 130%, 10% 130%, 0% 0);
+  clip-path: var(--path); -webkit-clip-path: var(--path);
 }
 
 .tagline {
@@ -1135,9 +1147,10 @@ footer {
   content: "";
   height: 0.2em;
   background: linear-gradient(to right,
-    transparent 00%,
+    transparent 0%,
     hsla(8, 10%, 18%, 0.1) 10%,
     hsla(8, 10%, 18%, 0.3) 30%, transparent 90%);
+    /* works with safari transparent since colors dark anyways... */
   width: 16rem;
   transform: skew(45deg);
   position: absolute;
