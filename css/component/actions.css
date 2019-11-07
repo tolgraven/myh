@@ -1,14 +1,5 @@
 
 
-.actions {
-  padding: 1rem;
-  background: hsl(var(--hue-2), 30%, 80%, 0.6);
-  /* max-width: 700px; */
-  /* max-width: 90%; */
-  display: flex;
-  margin: 0.8rem auto 0;
-  flex-flow: row wrap;
-}
 .info-box {
   padding: 0 1rem;
   margin: 0.4rem 1.0rem;
@@ -23,100 +14,7 @@
   right: 0%;
   padding: var(--space);
 }
-.actions .info-box > div {
-  display: flex;
-  align-items: space-between;
-  flex-flow: column wrap;
-}
-.action-tagline {
-  font-size: 2rem;
-  display: flex;
-  width: 100%;
-  align-items: space-between;
-  justify-content: space-between;
-  margin: 0;
-}
 
-.action-tagline > h2 {
-  margin: 0 1rem;
-}
-
-.action li {
-  white-space: nowrap; /* ensures minimum width is never exceeded */
-  display: flex;
-  justify-content: space-between; /* ensures stretched to edges */
-  position: relative;
-  padding: 0;
-}
-.action li span { /* middle text */
-  /* color: var(--myh-yellow); */
-  font-weight: 900;
-  z-index: 10;
-  pointer-events: none;
-  padding-top: 0.4em;
-  mix-blend-mode: difference;
-}
-/* .action li span::before { /1* middle text *1/ */
-/*   content: " "; */
-/*   position: absolute; */
-/*   background: white; */
-/*   width: 60%; */
-/*   height: 100%; */
-/*   z-index: -1; */
-/*   /1* right: 0; top: 0; *1/ */
-/*   clip-path: polygon(0 50%, 10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%); */
-/* } */
-
-.action { /* whole box */
-  /* background: linear-gradient(145deg, var(--applying-color) 40%, var(--existing-color) 60%); */
-  padding-inline-start: 0;
-  overflow: hidden;
-}
-
-.action-twin {
-  /* transform: skew(-2deg); */
-  transform: skew(-0deg);
-  flex: 2 0.2 60%;
-  max-width: 400px;
-  margin: auto;
-  display: flex;
-  justify-content: space-around;
-  align-items: space-between;
-  flex-flow: column wrap;  /* cant have if want to also get side by side lol */
-  /* background: var(--fg-2); */
-  /* background: var(--box-faint-color); */
-  /* background: linear-gradient(125deg, var(--applying-color) 49.9%, var(--existing-color) 50.1%); */
-}
-.action-twin ul li a {
-  font-size: 1.8em;
-  text-decoration: none;
-}
-/* .action-twin ul li a:first-of-type { */
-/*   background: hsl(var(--hue-1), var(--sat-mid-2), 50%, 0.7); */
-/* } */
-/* .action-twin ul li a:last-of-type { */
-/*   background: hsl(var(--hue-2), var(--sat-mid-2), 50%, 0.7); */
-/* } */
-/* .action-twin ul li div span { */
-/*    margin: 0 1rem; */
-/*    pointer-events: none; */
-/*    z-index: -1; */
-/* } */
-/* .action-twin ul li > div { */
-/*    left: 0; */
-/*    width: 50%; */
-/* } */
-.action-twin > div:first-of-type { justify-content: flex-start; }
-.action-twin > div:last-of-type  { justify-content: flex-end; }
-
-.action-header {
-  display: flex;
-  justify-content: space-evenly;
-  background: var(--bg-2);
-}
-.action-header h2 {
-  margin: 0;
-}
 
 .applying, .existing {
   display: inline;
@@ -163,36 +61,6 @@
   transform: scaleY(1.1);
 }
 
-
-/* .call-to-action.applying::after, */
-/* .call-to-action.existing::before { */
-/*   width: 0; */
-/* } */
-/* .call-to-action.existing::after, */
-/* .call-to-action.applying::before { */
-/*   content: ""; */
-/*   position: absolute; */
-/*   z-index: -1; */
-/*   height: 1.0em; */
-/*   /1* width: 100%; *1/ */
-/*   width: 1000%; */
-/*   height: 750%; */
-/*   transition: all 0.5s; */
-/* } */
-
-/* .call-to-action.applying:hover::before { */
-/*   /1* right: 0px; *1/ */
-/*   top: 10%; */
-/*   width: 1000%; */
-/*   background: linear-gradient(to right, var(--applying-color) 60%, transparent 100%); */
-/* } */
-/* .call-to-action.existing:hover::after { */
-/*   /1* left: -0px; *1/ */
-/*   bottom: -10%; */
-/*   width: 1000%; */
-/*   right: 0; */
-/*    background: linear-gradient(to left, var(--existing-color) 60%, transparent 100%); */
-/* } */
 
 
 .nav-box {

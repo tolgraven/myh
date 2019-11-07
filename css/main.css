@@ -772,11 +772,7 @@ section h2 > a { /* filter publications stuff */
 }
 
 .menu-item-number, .filter-submenu > li > a > span { /* same shit */
-  margin-left: 1rem;
   text-align: right;
-  /* filter: invert(); */
-  /* padding: 0.2rem 0.8rem 0; */
-  /* /1* margin: -0.8rem; *1/ */
   background: var(--fg-2);
   color: var(--bg-2);
   
@@ -785,12 +781,7 @@ section h2 > a { /* filter publications stuff */
 }
 
 .subscribe {
-
 }
-/* main > section:first-of-type { /1* top section: no upper border *1/ */
-/* } */
-/* main > section:last-of-type { /1* last section, no bottom border *1/ */
-/* } */
 
 
 a {
@@ -805,36 +796,6 @@ a:focus, a:hover {
 }
 
 
-
-/* h4::first-yetter { /1* nice looking fancy. why isnt applying within category?? *1/ */
-/*   font-size: 110%; */
-/*   /1* filter: brightness(110%); *1/ */
-/* } */
-/* h4::first-letter { /1* try smthing *1/ */
-/*   font-size: 110%; */
-/*   background: var(--myh-yellow); */
-/*   padding-left: 0.2rem; */
-/* } */
-
-/* /1* bs to recreate logo sorta. but need first two letters obvs. *1/ */
-/* h4 { */
-/*   position: relative; */
-/* } */
-/* h4::before { /1* try smthing *1/ */
-/*   position: absolute; */
-/*   left: -0.4rem; top: -0.2rem; */
-/*   content: ""; */
-/*   background: var(--myh-yellow); */
-/*   width: 1rem; */
-/*   height: 1.0rem; */
-/*   z-index: -1; */
-/*   padding: 0.2rem; */
-/*   padding-left: 0.2rem; */
-/* } */
-/* h4::first-letter { /1* nice looking fancy. why isnt applying within category?? *1/ */
-/*   font-size: 120%; */
-/*   margin-right: 0.4rem; */
-/* } */
 
 .absolute {
   position: absolute;
@@ -1121,14 +1082,6 @@ section p.read-more::after { /* should auto insert right arrow icon... */
   /* width: 100vw; */
   max-width: 700px;
   margin: auto;
-  /* box-shadow: 2px 1px 9px 4px var(--box-faint-color); */
-  /* background-color: var(--bg-light-blue-2); */
-  /* background: linear-gradient(to bottom, */
-  /*   var(--bg-light-blue) 15%, */
-  /*   var(--bg-light-blue-2) 25%, */
-  /*   transparent 110%, */
-  /*   ); */
-    /* transparent 0%, */
 }
 #birthday-hero > img {
   /* width: 100vw; */
@@ -1155,28 +1108,6 @@ section p.read-more::after { /* should auto insert right arrow icon... */
   } 100%  { backdrop-filter: brightness(100%); /* or like "none" */ -webkit-backdrop-filter: brightness(100%);
   }
 }
-
-#logo-top {
-  position: sticky;
-  top:  calc(var(--space) * 5); /* small header and a bit, position for when starts moving off sticky, which is also good fallback when parallax missing... */
-  margin-top: calc(1.5 * var(--space));
-  animation: fade-in-logo 3.5s;
-  transform: translateZ(-10px) scale(1.10); /* hardcoded, always want enabled */
-}
-@keyframes fade-in-logo {
-  0% {
-    opacity: 0.00;
-    background-size: 85%;
-    border-radius: 63%;
-  } 65% {
-    border: 0.35em solid transparent; /* hmm gotta make a bit device-dependent */
-  } 90%, 100% {
-    border: 0.35em solid var(--bg-1); /* hmm gotta make a bit device-dependent */
-    opacity: 0.09;
-    filter: invert() hue-rotate(180deg);
-  }
-}
-
 
 
 /*
