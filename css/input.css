@@ -15,6 +15,7 @@ label.burger {
   height: var(--height);
   width: var(--height);
   transition: border-bottom 1s ease-in-out;
+  z-index: 2;
 }
 .burger::-moz-focus-inner {
   border: 0;
@@ -32,7 +33,7 @@ label.burger {
 }
 .burger:after {  /* MIDDLE */
   border-top: var(--bun-width) solid;
-  margin-top: calc(0.5 * var(--height) - 0.75 * var(--bun-width));
+  margin-top: calc(0.5 * var(--height) - 0.5 * var(--bun-width));
 }
 
 
@@ -40,7 +41,7 @@ label.burger {
 .burger-check:checked ~ * .burger:after {
   position: absolute;
   width: var(--height);
-  --translate: -0.5rem;
+  --translate: -0.8rem;
   margin: 0;
   border-radius: 1px;
   transition: transform 0.3s ease-out;
@@ -59,8 +60,8 @@ label.burger {
 /* .burger-check:checked ~ * .burger { /1* turns into a line from right side to middle *1/ */
 .burger-check:checked ~ * .myh-burger .burger { /* turns into a line from right side to middle */
   position: absolute;
-  top: 0.5rem; /* needs to be a static amount or lines break... */
-  right: 1.5rem;
+  top: 0.4rem; /* needs to be a static amount or lines break... */
+  right: 2.0rem;
   border-bottom: 0; /* remove lower bun */
   /* transition: border 0.5s ease-in-out; */
   color: var(--myh-yellow);
@@ -128,6 +129,7 @@ form.contact-form > label {
 input[type="search"] {
   /* background: var(--fg-1); */
   color: var(--bg-1);
+  -webkit-appearance: textfield;
   /* background: va */
 }
 input[type="search"] + button {

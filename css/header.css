@@ -116,14 +116,13 @@ header {
 
   /* want same allover margins as logo on left - so black around */
   position: absolute;
-  right: 0; top: 0em;
-  /* right: 0.2rem; top: 0.2rem; */
-  background-color: var(--myh-yellow);
+  right: 0; top: 0;
+  background: var(--myh-yellow-grad);
   /* border-right: 0.4rem solid; */
   border: 0.4rem solid;
   /* z-index: 20; */
 }
-.myh-burger::after {  /* noneed yellow bg is enough? */
+.burger-check:checked ~ * .myh-burger::after {  /* noneed yellow bg is enough? */
   content: "";
   position: absolute;
   background: var(--fg-2);
@@ -131,22 +130,23 @@ header {
   height: var(--header-height);
   /* height: 100%; */
   right: 0; top: 0;
-  z-index: -1;
+  /* z-index: 0; */
 }
 
 /* background for sticky header until get page sticky headings */
-main::before {
+.fill-for-header::before {
   content: "";
   position: sticky;
-  /* top: 0; left: 0; */
   top: 0; left: 0;
-  padding-top: -4.4rem;
-  margin-top: -4.4rem;
+  margin-top: calc(-1 * var(--header-height));
   background: var(--fg-2);
   width: 100vw;
-  height: 4.4rem;
-  opacity: 0.90;
+  height: var(--header-height);
+  opacity: 0.95;
   z-index: 10;
+}
+.fill-for-header.negative:before {
+  height: 0rem;
 }
 
 
@@ -155,6 +155,7 @@ main::before {
 }
 .burger-check:checked ~ header .myh-burger {
   padding: 0;
+  border: 0;
 }
 
 
@@ -196,17 +197,16 @@ main::before {
   max-width: 100%;
   align-items: center;
   overflow-x: scroll;
-  /* overflow-y: hidden; */
   overflow-y: visible;
   position: relative;
-  top: -4px;
-  left: -6px;
 }
 .nav-links {
   flex: 0.3 3 auto;
   display: flex;
   align-items: center;
   flex-wrap: nowrap; /* on all the time and work widths rather? for anim */
+  margin: 0;
+  padding: 0;
 }
 .nav-links > li {
   font-size: 0.9em;
@@ -217,8 +217,7 @@ main::before {
   /* visibility: var(--nav-visible); */
   transition: min-width 0.4s ease 0.0s;
 }
-/* .nav-links > li:first-of-type, .nav-links > li:nth-of-type(2) { */
-.nav-links > li:first-of-type{
+.nav-links > li:first-of-type {
   display: block; /* always show logo */
   padding: 0;
 }
@@ -256,22 +255,27 @@ main::before {
   #expand:checked ~ * .nav-links {
     position: relative;
     flex-wrap: wrap;
-    /* background: var(--fg-2); */
-    background: linear-gradient(170deg, var(--fg-2), var(--box-regular-color) 300%);
   }
   #expand:checked ~ * .nav-links > li {
     display: block;
-    /* display: flex; */
     min-width: 50%;
+    transition: min-width 0.3s;
     flex: 1 1 auto;
     /* transition: transform 0.3s; */
-    line-height: 1.6em;
-    border-left: 0px solid hsl(0, 0%, 90%, 0.5);
+    /* line-height: 1.6em; */
+    --left-width: 0px;
+    border-left: var(--left-width) solid var(--bg-1);
     margin-bottom: 0.4rem;
-    padding-left: 0.4rem;
+    padding-left: calc(0.8rem - var(--left-width));
   }
   #expand:checked ~ * .nav-links > li:hover {
-    border-left: 4px solid hsl(0, 0%, 90%, 0.8);
+    --left-width: 4px;
+  }
+  #expand:checked ~ * .nav-links > li:first-of-type { /* discount logo */
+    padding-left: 0;
+  }
+  #expand:checked ~ * .nav-links > li:first-of-type:hover {
+    --left-width: 0px;
   }
   #expand:checked ~ * #areas > ul > li {
     width: 100%;
@@ -280,13 +284,13 @@ main::before {
     /* flex-wrap: no-wrap; */
     /* display: inline; */
     flex: 1 1 auto;
-    transition: width 0.3s ease 0.0s, opacity 0.9s ease 0.0s;
+    transition: width 0.3s ease 0.0s, opacity 0.7s ease 0.0s;
   }
 
   #expand:checked ~ header {
     max-height: 30rem;
     height: auto; /* why no longer auto auto? */
-    transition: max-height 0.20s ease 0.10s;
+    transition: max-height 0.23s ease 0.07s;
     /* transition: all 0.2s ease; */
     --search-visible: block;
     --nav-visible: block;
@@ -294,7 +298,7 @@ main::before {
     background: hsl(var(--hue-2), var(--sat-mid-1), var(--lum-light-2), 0.90);
     /* --search-visible: visible; */
     /* --nav-visible: visible; */
-    overflow: visible;
+    overflow-y: hidden;
     border-bottom: 0.3rem solid;
   }
 
