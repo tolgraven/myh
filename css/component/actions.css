@@ -131,13 +131,10 @@
   /* filter: brightness(130%); */
 }
 .nav-box > li > .applying:hover ~ span {
-  /* background: var(--applying-color); */
   background: linear-gradient(to left, var(--bg-2), var(--applying-color));
 }
 .nav-box > li > .existing:hover ~ span {
-  /* transition:  background 1.4s; */
   background: linear-gradient(to right, var(--bg-2), var(--existing-color));
-  /* background: var(--existing-color); */
 }
 
 .nav-box > li > a > button {
@@ -149,11 +146,8 @@
 .apply-header {
   color: var(--bg-2);
   max-width: 50%;
-  /* height: 100%; */
   display: flex;
   flex-direction: column;
-  /* display: inline; */
-  /* display: flex; */
   pointer-events: none; /* just kill hover from box-banner */
   padding: 0.8rem 1.6rem 0 1.6rem !important;
   /* padding-right: 0.2rem !important; */

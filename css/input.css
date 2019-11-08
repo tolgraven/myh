@@ -136,26 +136,3 @@ input[type="search"] + button {
   margin-left: 0;
 }
 
-/* #theme-toggle:checked ~ .themable { */
-/* #theme-toggle:checked ~ body { */
-/* #theme-toggle:checked ~ main { */
-/*   /1* ok so can select main but not body OUCH. *1/ */
-/* /1* .themable { *1/ */
-/*     --bg-1:     var(--dark-1); */
-/*     --bg-2:   var(--dark-2); */
-/*     --fg-1:     var(--light-1); */
-/*     --fg-2:   var(--light-text); */
-/*     --box-regular-color-flip: hsla(0, 0%, var(--lum-light-1), var(--opacity-regular)); */
-/*     --box-faint-color-flip:   hsla(0, 0%, var(--lum-light-1), var(--opacity-faint)); */
-/*     color: red; */
-/* } */
-/* #theme-toggle:not(:checked) ~ main { */
-/*   --bg-1:      var(--light-1); */
-/*   --bg-2:    var(--light-text); */
-/*   --fg-1:      var(--dark-1); */
-/*   --fg-2:    var(--dark-2); */
-/*   --box-regular-color-flip: var(--box-regular-color); /1* light mode always dark shadows *1/ */
-/*   --box-faint-color-flip:   var(--box-faint-color); */
-/*     color: blue; */
-/* } */
-

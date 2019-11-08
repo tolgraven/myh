@@ -167,9 +167,9 @@ figcaption, .float-with-caption {
 }
 
 .widescreen-safe { /* ensure bottom doesnt run out of 16:9 bg media on (ironically) _thin_ screens */
-  height: 24rem; /* just, some nice tall enough height - max-height will save us anyways */
+  height: 20rem; /* just, some nice tall enough height - max-height will save us anyways */
   /* max-height: calc(min(100vw, var(--content-max-width)) / (18/9)); */
-  max-height: calc(min(66vw, 600px) / (16/9));
+  max-height: calc(min(66vw, 600px) / (18/9));
   /* max-height: calc(max(66vw, 600px) / (18/9)); */
   /* 18/9 new 16/9 innittt. but no yeah wide logo + parallax so... */
 }
@@ -186,6 +186,7 @@ figcaption, .float-with-caption {
   max-width: unset;
   object-fit: cover;
   margin: 0;
+  z-index: -1;
 }
 .section-with-media-bg-wrapper { /* like section-bg-wrapper but NOT using background for img/video */
   position: relative;

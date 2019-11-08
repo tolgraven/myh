@@ -202,8 +202,6 @@
 
 * {
   box-sizing: border-box;
-  /* margin:  0.1rem; */
-  /* padding: 0.1rem; */
 }
 
 html, body {
@@ -226,7 +224,6 @@ body {
   height: 100%;
   display: flex;
   flex-flow: column;
-  font-size: 0.9rem;
   
   background: linear-gradient(to bottom,
     var(--bg-1) 2%,
@@ -238,8 +235,6 @@ body {
     );
   background-repeat: no-repeat;
   background-attachment: fixed;
-  /* background-color: var(--bg-1); */
-  /* background-color: var(--bg-light-blue); */
   transform: translateZ(0px); /* needed by some browsers */ /* on parent of parallax wrapper (which is main) */
 }
 
@@ -282,12 +277,13 @@ footer, .footer-content, .footer-column {
 
 
 menu {
-  /* overflow-x: scroll; */
-  /* position: relative; */
-  display: flex;
-  padding: 0;
-  /* flex-wrap: wrap; */
-  /* flex: 1 2 auto; */
+ /* overflow-x: scroll; */
+ /* position: relative; */
+ display: flex;
+ padding: 0;
+ background: var(--section-bg);
+ /* flex-wrap: wrap; */
+ /* flex: 1 2 auto; */
 }
 .menu { /* ul usually inside a menu, should go in an actual menu or nav */
   /* display: flex; /1* hmm if skip flex on this then .areas behaves reasonable... *1/ */
@@ -298,13 +294,14 @@ menu {
 }
 .menu > li {
   padding: 0.6em;
-  background: linear-gradient(to bottom, var(--bg-2) -40%, transparent 170%);
+  /* background: -webkit-linear-gradient(to bottom, var(--bg-2) -40%, hsla(0, 0%, 90%, 0.0) 170%); */
+  /* background: linear-gradient(to bottom, var(--bg-2) -20%, transparent 130%); */
+  /* background: -webkit-linear-gradient(to bottom, var(--bg-2) 0%, var(--bg-1) 100%); */
+  background: linear-gradient(to bottom, var(--bg-2) -10%, var(--bg-1) 140%);
+  /* background: linear-gradient(to bottom, var(--bg-1) -40%, transparent 170%); */
 }
 .menu > li:hover {
-  /* filter: invert() contrast(100%); */
   filter: invert() contrast(70%) brightness(130%);
-  /* padding: 0.4em; */
-  /* background: linear-gradient(to bottom, var(--bg-2) -30%, transparent 130%); */
 }
 .menu-down {
   display: flex;
@@ -410,13 +407,7 @@ main {
 }
 .content > * {
   justify-content: flex-start;
-  /* justify-content: space-between; */
-  /* align-items: flex-start; */
-  /* flex: 1 1; */
 }
-/* .content section { */
-/*   margin-bottom: 2.0rem; */
-/* } */
 
 .primary { /* general content on left side */
   flex: 1.5 3 400px;
@@ -552,7 +543,7 @@ section > ul > li > h3 { /* from calendar div - could be generic for minor headi
   margin: 0 0;
   /* background: linear-gradient(70deg, transparent -10%, var(--bg-1), 30%, white, var(--bg-2) 70%, transparent 110%); */
   /* background: -webkit-linear-gradient(70deg, transparent -10%, var(--bg-1), 30%, white, var(--bg-2)); */
-  background: linear-gradient(70deg, var(--bg-1), white, var(--bg-2));
+  background: linear-gradient(70deg, white, var(--bg-1), white, var(--bg-2) 130%);
   opacity: 0.9;
   border-left: 0.4rem solid;
 }
@@ -645,9 +636,13 @@ a:focus, a:hover {
   /* text-shadow: 1px 1px 1px var(--bg-2); */
   text-shadow: 1px 1px 1px var(--box-faint-color);
   /* box-shadow: 1px 1px 3px var(--fg-2); */
+  text-decoration: underline !important;
+  /* cursor: cell; */
 }
 
-
+strong, b {
+  font-weight: bolder;
+}
 
 .absolute {
   position: absolute;
@@ -722,7 +717,7 @@ a:focus, a:hover {
   color: var(--bg-1);
   padding: 0.4rem 1rem;
   margin: 0;
-  backdrop-filter: blur(1px) brightness(75%) contrast(80%);
+  background: var(--heading-on-img-bg);
   /* margin-right: 40%; */
 }
 .area-box p { /* box with image and description of an area of education */
@@ -770,10 +765,11 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   flex: 1 1 auto;
-  margin: auto;
   z-index: 1;
   width: 100%;
-  max-width: 1166px;
+  /* max-width: 1166px; */
+  /* max-width: var(--content-max-width); */
+  margin: auto;
   /* margin-bottom: -2rem; */
   /* padding-bottom: 2rem; /1* ensure blur sticks out... say what? i forget purpose *1/ */
 
@@ -922,7 +918,8 @@ section p.read-more::after { /* should auto insert right arrow icon... */
 }
 
 .tagline {
-  display: none;
+  /* display: none; */
+  display: var(--display-tagline);
   /* position: sticky; */
   /* top: 0; */
 }
@@ -943,24 +940,6 @@ section p.read-more::after { /* should auto insert right arrow icon... */
   /* margin: auto; */
   /* left: calc(0px - var(--space-edges)); */
   /* z-index: -1; */
-}
-#top-banner {
-  opacity: 0.75;
-  left: 0; top: 0;
-  /* margin: auto; */
-  min-width: calc(100% * var(sides-min-fraction));
-  /* width: 100%; */
-  object-fit: cover;
-
-  animation: top-backdrop 4s ease infinite;
-  animation-play-state: paused;
-}
-#top-banner:hover { animation-play-state: running; }
-@keyframes top-backdrop { /* well this'd be nice but it's CRAZY on the cpu bleh */
-  0%, 50% { backdrop-filter: brightness(100%); -webkit-backdrop-filter: brightness(100%);
-  } 80%   { backdrop-filter: brightness(250%); -webkit-backdrop-filter: brightness(250%);
-  } 100%  { backdrop-filter: brightness(100%); /* or like "none" */ -webkit-backdrop-filter: brightness(100%);
-  }
 }
 
 
