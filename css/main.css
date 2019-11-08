@@ -51,9 +51,10 @@
   --hue-1:             180;
   --hue-2:             208;
   --hue-3:              55;
-  --hue-4:              0;
-  /* --myh-yellow:        hsl(55, 100%, 51%); */
-  --myh-yellow:        hsl(55, 89%, 64%); /* tone of yellow when slightly transp */
+  --hue-4:              20;
+  --myh-yellow-pre:    hsl(54, 100%, 51%);
+  --myh-yellow:        hsl(56, 87%, 68%); /* tone of yellow when slightly transp */
+  --myh-yellow-grad:   linear-gradient(50deg, var(--myh-yellow-pre), var(--myh-yellow));
   --bg-light-blue:     hsl(205, 61%, 90%);
   --bg-light-blue-2:   hsl(201, 62%, 85%);
   /* --good-yellow:        hsl(49, 85%,70%, 0.4); */
