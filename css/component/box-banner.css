@@ -1,0 +1,155 @@
+
+
+/* new box banner DIY */
+.box-banner { /* box of banner links */
+  --arrow-width-start: calc(4 * var(--line-width));
+  --arrow-width: var(--arrow-width-start);
+  --arrow-front: 1rem;
+  margin-bottom: var(--pad-section-inner);
+  padding: 1rem;
+  padding-right: 2.0rem;
+  /* position: relative; */ /* breaks inline somehow? */
+  text-align: right;
+
+  --banner-color: transparent;
+  --banner-color: hsla(var(--fg-1), 0.0);
+  --border-color: var(--fg-2);
+  background: linear-gradient(to right,
+         var(--banner-color) -100%,
+         var(--fg-2) 120%);
+
+  --path: polygon(0 0, calc(100% - var(--arrow-front)) 0,
+             100% 50%, calc(100% - var(--arrow-front)) 100%,
+               0 100%);
+
+  clip-path: var(--path); -webkit-clip-path: var(--path);
+  transition: clip-path 1.0s, -webkit-clip-path 1.0s;
+  /* SKIP CLIP-PATH HERE for funky big-effect accidentally had in safari recorded on phone... */
+}
+
+.box-banner.light {
+  --banner-color: hsla(var(--bg-1), 0.0);
+  --border-color: var(--bg-2);
+}
+.box-banner.alpha {
+  --border-color: hsl(var(--hue-2), var(--sat-low-2), var(--lum-light-3), 0.5);
+}
+.box-banner.left {
+  --path: polygon(100% 0, 100% 100%,
+             calc(0% + var(--arrow-front))  100%,
+             0 50%,
+             calc(0% + var(--arrow-front))   0);
+             /* very nice anim btw when switch right-left. explore... */
+}
+.box-banner::before, .box-banner::after { /* make the arrows */
+  position: absolute;
+  content: "";
+  top: 0;
+  height: 100%;
+  width: var(--arrow-width);
+  transition: width 0.4s;
+  z-index: -1;
+}
+.box-banner::before { /* make the arrow */
+  /* background: linear-gradient(to right, var(--border-color) 0%, transparent 100%); */
+  /* background: -webkit-linear-gradient(to right, var(--border-color) 0%, hsla(0, 0%, 10%, 0.0) 100%); */
+  background: linear-gradient(to right, var(--border-color) 0%, hsla(0, 0%, 90%, 0.0) 100%);
+  left: 0rem;
+  --half: calc(50% - 0.5*var(--arrow-width-start) + var(--line-width));
+  --path: polygon(
+     0 0, var(--half) 0,
+     calc(100% - var(--arrow-width-start) + var(--line-width)) 50%,
+     var(--half) 100%, 0 100%);
+  clip-path: var(--path); -webkit-clip-path: var(--path);
+}
+
+.box-banner::after {
+  background: linear-gradient(to right, transparent -50%, var(--banner-color) 130%);
+  right: 0;
+  --path: polygon(0 0, 100% 0, 100% 100%, 0% 100%, 40% 50%);
+  clip-path: var(--path); -webkit-clip-path: var(--path);
+}
+
+.box-banner.left::before { /* make the arrow */
+  /* background: linear-gradient(to left, var(--border-color) 0%, transparent 100%); */
+  background: linear-gradient(to left, var(--border-color) 0%, hsla(0, 0%, 90%, 0.0) 100%);
+  --half: calc(100% - (50% - 0.5*var(--arrow-width-start) + var(--line-width)));
+  --path: polygon(100% 0, 100% 100%,
+         var(--half) 100%,
+         calc(0% + var(--arrow-width-start) - var(--line-width)) 50%,
+         var(--half) 0%);
+  clip-path: var(--path); -webkit-clip-path: var(--path);
+   right: 0;
+   left: unset;
+ }
+.box-banner.left::after {
+  --path: polygon(100% 0, 100% 100%, 50% 100%, 50% 50%, 50% 0);
+  clip-path: var(--path); -webkit-clip-path: var(--path);
+  opacity: 0.5;
+}
+
+.box-banner a {
+  font-size: 1.3rem;
+  line-height: 1.4rem;
+  text-decoration: none;
+  align-self: center;
+  color: var(--bg-2);
+  font-weight: 600;
+  z-index: 10;
+}
+.box-banner a h1, .box-banner a > div, .box-banner img {
+  display: inline;
+  width: 30%;
+}
+.box-banner:hover {
+  /* XXX some weird thing on article-section h2 hover, these also get affected */
+  /* filter: saturate(90%); */
+  --arrow-width: 80%;
+  --arrow-front: 2rem;
+}
+.box-banner:hover a {
+  text-shadow: 1px 1px 1px var(--box-faint-color);
+}
+.box-banner.green {
+  --banner-color: hsl(110, var(--sat-high-2), 70%, 0.7);
+}
+.box-banner.yellow {
+  --banner-color: var(--myh-yellow);
+}
+.box-banner.blue {
+  --banner-color: hsl(233, 60%, 30%, 0.8);
+}
+.box-banner.black {
+  --banner-color: var(--dark-2);
+}
+
+.box-banner.advanced  {
+  position: relative;
+  display: flex;
+  padding: 0;
+  text-align: left;
+  height: 50%;
+}
+.box-banner.advanced > img {
+  position: relative;
+  left: 0; top: 0;
+  height: 100%;
+  object-fit: cover;
+}
+.box-banner.advanced > h3 {
+  position: absolute;
+  left: 0.6rem;
+  top: 15%; /* basically midddle, of square eu star anyways, other stuff? */
+  /* det breaks on longer text haha */
+  text-align: left;
+  color: var(--bg-2);
+}
+.box-banner.advanced > a  {
+  position: relative;
+  height: auto;
+  /* font-size: 1.2em; */
+  line-height: 1.2em;
+  padding: 0.4rem 1.6rem 0.4rem 0.4rem;
+  white-space: pre-wrap;
+}
+
