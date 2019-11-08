@@ -270,19 +270,14 @@ nav a, menu a, .menu a, section h2 > a, section h1 > a {
 
 .intro,
  .article-flow, .article-item,
- .cal-item,
-.action-twin,
+ .cal-item, 
 footer, .footer-content, .footer-column {
   background: var(--section-bg);
 }
 .intro, .article-flow, .article-item,
- .cal-list,  .action-twin,
+ .cal-list,
 .footer-column {
    box-shadow: 0px 1px 4px 1px var(--box-faint-color);
-}
-
-.content > * { /* primary, sidebar... */
-  /* box-shadow: 1px 1px 4px 1px var(--box-faint-color); */
 }
 
 
@@ -877,7 +872,8 @@ section p.read-more::after { /* should auto insert right arrow icon... */
 .perspective.top, .perspective-top { /* default perspective for main. */
   /* perspective-origin: top; /1* starts where i want but then want it going other dir... or maybe going up-away better, more understated... *1/ */
   /* perspective-origin: 50% 0%; /1* starts where i want but then want it going other dir... or maybe going up-away better, more understated... *1/ */
-  perspective-origin: 50% 30%; /* starts where i want but then want it going other dir... or maybe going up-away better, more understated... */
+  /* perspective-origin: 50% 30%; /1* starts where i want but then want it going other dir... or maybe going up-away better, more understated... *1/ */
+  perspective-origin: 50% 50vh; /* starts where i want but then want it going other dir... or maybe going up-away better, more understated... */
 }
 .perspective.left { /* default perspective for main. */
   perspective-origin: left; /* starts where i want but then want it going other dir... or maybe going up-away better, more understated... */
