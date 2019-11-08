@@ -196,12 +196,8 @@
     /* font-size: 0.80rem; */
   }
 }
-@supports (backdrop-filter: blur(1px)) {
- 
-}
 @supports not (backdrop-filter: blur(1px)) {
   /* fallbacks for firefox... */
- 
 }
 
 * {
@@ -210,6 +206,10 @@
   /* padding: 0.1rem; */
 }
 
+html, body {
+  font-size: 14px;
+  /* font-size: 0.9rem; */
+}
 html {
   /* height: 100%; */ /* setting height 100% makes sticky header disappear after that amount */
   /* which isnt good, but investigate for sticky/parallax effects - means sticky sections without prog higher z-index chaos? */
@@ -469,7 +469,8 @@ main {
 .sidebar > section > h2 { /* hug edge until we hit max-width */
   /* padding-right: var(--pad-to-edge); */
   /* other issue with this is would need to keep track of more things to handle when flex is wrapping etc. no go? */
-  padding: 1.2rem 7.0rem 1.2rem 1.2rem;
+  /* padding: 1.1rem 4.2rem 1.1rem 1.2rem; */
+  padding-right: 4.2rem; /* avoid header stuff */
 }
 .sidebar > section  {
   margin-bottom: 1rem;
@@ -498,8 +499,10 @@ section ul {
 /* section h1, section h2 { */
 section > h1, section > h2 {
   text-align: center;
-  padding:  var(--space) var(--pad-section-inner);
-  padding: 1.2rem 1.2rem 1.2rem 6rem;
+  /* padding:  var(--space) var(--pad-section-inner); */
+  /* padding: 1.1rem 1.2rem 1.1rem 6rem; */
+  padding: 1.0rem 1.2rem;
+  padding-left: 6rem; /* avoid logo - should be dynamic depending on tagline */
   width: 100%;
   /* z-index: -1; */
   z-index: 12;
@@ -509,6 +512,8 @@ section > h1, section > h2 {
   top: 0;
 }
 section > h1 {
+  font-size: 1.8em;
+  padding: 0.8rem 1.2rem;
   background: var(--fg-2);
   color: var(--bg-2);
   /* margin: 0; */
@@ -527,9 +532,18 @@ section > h2 { /* is also img bg somehow... fix */
   /* z-index: 10; */
   left: 0;
   z-index: 30;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
 
 }
+@-moz-document url-prefix() {
+  section > h1 {
+    padding: 1.1rem 1.2rem;
+  }
+  section > h2 {
+    padding: 1.25rem 1.2rem;
+  }
+}
+
 section > h3 {
   padding: 0.4rem 0.8rem;
   color: var(--fg-2);
@@ -619,8 +633,8 @@ section h2 > a { /* filter publications stuff */
   background: var(--fg-2);
   color: var(--bg-2);
   
-  padding: 0.4rem 1.8rem 0.8rem 1.2rem;
-  margin: -0.8rem;
+  padding: 0.6rem 1.0rem 0.6rem 1.2rem;
+  margin: -0.5rem;
 }
 
 .subscribe {
@@ -728,7 +742,8 @@ a:focus, a:hover {
 }
 /* .area-box > div, .area-box a > h2 { /1* box with image and description of an area of education *1/ */
 .area-box > div { /* box with image and description of an area of education */
-  backdrop-filter: blur(16px) brightness(80%) contrast(80%);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  background: var(--heading-on-img-bg);
 }
 .area-box a img:hover { /* box with image and description of an area of education */
   transform: scale(1.08) translateX(20px);
@@ -769,8 +784,7 @@ iframe {
 
   box-shadow: 2px 1px 9px 6px var(--box-faint-color);
   background: hsla(0, 10%, 80%, 0.7);
-  backdrop-filter: blur(2rem) brightness(120%);
-  -webkit-backdrop-filter: blur(2rem) brightness(120%);
+  backdrop-filter: blur(2rem) brightness(120%); -webkit-backdrop-filter: blur(2rem) brightness(120%);
 }
 .intro > * {
   border: var(--thin-border-width) solid var(--light-border-color);
