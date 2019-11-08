@@ -34,10 +34,10 @@
   --article-img-above-margin: 6rem;
 
   --line-width:        0.4rem; /* main design line/border width */ /* 0.125 normally 2px but nah ends up weird when font scales to like 1.67 and shize */
-  --content-max-width: 1000px;
+  --content-max-width: 1350px;
 
   --perspective:       100;
-  --parallax:          12;
+  --parallax:          10;
   --parallax-scale:    calc(1 + (1 / var(--perspective) * var(--parallax)));
   --parallax-px:       calc(-1px * var(--parallax));
   --parallax-sm:       calc(0.50 * var(--parallax));
@@ -58,21 +58,21 @@
   --bg-light-blue:     hsl(205, 61%, 90%);
   --bg-light-blue-2:   hsl(201, 62%, 85%);
   /* --good-yellow:        hsl(49, 85%,70%, 0.4); */
-  --lum-dark-1:         5%;
-  --lum-dark-2:        15%;
+  --lum-dark-1:         6%;
+  --lum-dark-2:        12%;
   --lum-dark-3:        25%;
   --lum-light-1:       calc(100% - var(--lum-dark-1));
   --lum-light-2:       calc(100% - var(--lum-dark-2));
   --lum-light-3:       calc(100% - var(--lum-dark-3));
-  --sat-low-1:           4%;
+  --sat-low-1:          4%;
   --sat-low-2:          9%;
   --sat-mid-1:          16%;
   --sat-mid-2:          22%;
   --sat-high-1:         36%;
   --sat-high-2:         50%;
 
-  --light-1:           hsl(var(--hue-2), var(--sat-low-1), var(--lum-light-1));
-  --light-text:        hsl(29, var(--sat-mid-2), var(--lum-light-1));
+  --light-1:           hsl(var(--hue-4), var(--sat-low-1), var(--lum-light-1));
+  --light-text:        hsl(29, var(--sat-mid-1), var(--lum-light-2));
 
   --nav-accent: hsla(var(--hue-3), var(--sat-mid-1), var(--lum-dark-3), 0.75);
   --neutral-accent: #9ae; /* link? */
@@ -80,9 +80,9 @@
   --dark-2:     hsl(var(--hue-2),  var(--sat-low-1),  var(--lum-dark-2));
 
   --opacity-regular:  0.25;
-  --opacity-faint:    0.12;
-  --box-regular-color:    hsla(0, 10%, var(--lum-dark-2), var(--opacity-regular));
-  --box-faint-color:      hsla(0, 20%, var(--lum-dark-2), var(--opacity-faint));
+  --opacity-faint:    0.08;
+  --box-regular-color:    hsla(var(--hue-4), var(--sat-mid-2), var(--lum-dark-2), var(--opacity-regular));
+  --box-faint-color:      hsla(var(--hue-4), var(--sat-high-1), var(--lum-dark-2), var(--opacity-faint));
   --box-regular-color-flip: var(--box-regular-color); /* light mode always dark shadows */
   --box-faint-color-flip:   var(--box-faint-color);
 
@@ -92,7 +92,6 @@
   /*     hsl(var(--hue-1), var(--sat-mid-1), 10%, 0.30) 50%); */
   --heading-on-img-bg: hsl(var(--hue-2), var(--sat-mid-1), 25%, 0.50);
   --heading-no-img-bg: linear-gradient(to bottom,
-      /* transparent -50%, */
       hsl(var(--hue-2), var(--sat-mid-1), 25%, 0.20),
       hsl(var(--hue-2), var(--sat-mid-2), 25%, 0.80) 80%
       );
@@ -101,13 +100,7 @@
   
   --border-opacity:      0.20;
   --light-border-color:  hsl(var(--hue-1), 7%, 0%, var(--border-opacity));
-  --thin-border-width:   0px;
-
-  --fg-1:       var(--dark-1);
-  --fg-2:       var(--dark-2);
-
-  --lum-fg-1:   var(--lum-dark-1);
-  --lum-fg-2:   var(--lum-dark-2);
+  --thin-border-width:   0px; --fg-1:       var(--dark-1); --fg-2:       var(--dark-2); --lum-fg-1:   var(--lum-dark-1); --lum-fg-2:   var(--lum-dark-2);
   --lum-fg-3:   var(--lum-dark-3);
   --bg-1:       var(--light-1);
   --bg-2:       var(--light-text);
@@ -116,9 +109,11 @@
   --lum-bg-2:   var(--lum-light-2);
 
   --applying-color: hsl(var(--hue-1), var(--sat-mid-1), 50%, 0.6);
+  --applying-grad: linear-gradient(to bottom, var(--applying-color), hsl(var(--hue-1), var(--sat-mid-2), 60%, 0.7));
   /* --applying-color: var(--myh-yellow); */
   /* --applying-color: hsl(55, 100%, 51%, 0.8); */
   --existing-color: hsl(var(--hue-2), var(--sat-mid-1), 50%, 0.6);
+  --existing-grad: linear-gradient(to bottom, var(--existing-color), hsl(var(--hue-2), var(--sat-mid-2), 60%, 0.7));;
   /* --existing-color: hsl(var(--hue-2), var(--sat-mid-1), 10%, 0.8); */
   /* was digging with hue at 180 and 208 respectively. green/blue */
   
@@ -234,12 +229,12 @@ body {
   font-size: 0.9rem;
   
   background: linear-gradient(to bottom,
-    transparent 2%,
+    var(--bg-1) 2%,
     var(--bg-light-blue) 8%,
     var(--bg-light-blue-2) 25%,
     var(--bg-light-blue-2) 60%,
     var(--bg-light-blue) 70%,
-    transparent 90%
+    var(--bg-1) 90%
     );
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -408,15 +403,9 @@ main {
 
 .content { /* anything below intro */
   z-index: 15;
-  /* background: var(--bg-1); */
-  /* OR */
-  /* background: hsla(0, 10%, 80%, 0.7); */
-  /* backdrop-filter: blur(2rem) brightness(120%); */
-  /* OR */
-  background: hsla(0, var(--sat-low-1), var(--lum-light-2), 1.0);
-  /* padding-top: 0.8rem; */
+  background: hsla(20, var(--sat-mid-1), var(--lum-light-1), 1.0);
   
-  max-width: 1350px;
+  max-width: var(--content-max-width);
   
   display: flex;
   flex-wrap: wrap;

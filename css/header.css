@@ -127,8 +127,9 @@ header {
   content: "";
   position: absolute;
   background: var(--fg-2);
-  width: 3.2rem;
-  height: 100%;
+  width: var(--header-height);
+  height: var(--header-height);
+  /* height: 100%; */
   right: 0; top: 0;
   z-index: -1;
 }
@@ -250,10 +251,7 @@ main::before {
   #expand:checked ~ * menu .show-in-menu { display: block; }
 
   #expand:checked ~ * .nav-main {
-    font-size: 1.1em;
-    background: transparent;
-    /* max-height: 30rem; */
-    /* transition: max-height 0.5s ease 0.2s; */
+    background: linear-gradient(170deg, var(--fg-2), var(--box-regular-color) 300%);
   }
   #expand:checked ~ * .nav-links {
     position: relative;
