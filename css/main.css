@@ -7,6 +7,7 @@
 @import "component/actions.css";
 @import "component/articles.css";
 @import "component/calendar.css";
+@import "component/box-banner.css";
 
 
 /* wanted to put in own file but wasnt compatible with live reload solution... */
@@ -378,6 +379,14 @@ nav > ul > li:hover {
 }
 
 .widescreen-safe > h2 {
+}
+.gloss {
+  opacity: var(--opacity-regular);
+  /* background: radial-gradient(var(--myh-yellow), var(--myh-yellow-pre)); */
+  background: linear-gradient(70deg, var(--bg-2), var(--myh-yellow) 40%, var(--myh-yellow-pre) 50%, var(--myh-yellow) 60%, var(--bg-2));
+  /* background: linear-gradient(70deg, var(--bg-2), var(--myh-yellow) 45%, var(--myh-yellow-pre) 50%, var(--myh-yellow) 55%, var(--bg-2)); */
+  mix-blend-mode: screen;
+ 
 }
 
 main {
